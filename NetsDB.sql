@@ -2,16 +2,18 @@ USE [Nets]
 GO
 --CREATE TABLE
 
-CREATE TABLE dbo.Users (
-    [id]          INT           IDENTITY (1, 1) NOT NULL,
-    [username]    VARCHAR (250) NULL,
-    [fullname]    VARCHAR (250) NULL,
-    [password]    VARCHAR (MAX) NULL,
-    [roleid]      INT           NULL,
-    [signature]   VARBINARY (MAX) NULL,
+CREATE TABLE [dbo].[Users] (
+    [id]        INT  IDENTITY (1, 1) NOT NULL,
+    [username]  VARCHAR (250)   NULL,
+    [fullname]  VARCHAR (250)   NULL,
+    [password]  VARCHAR (MAX)   NULL,
+    [roleid]    INT             NULL,
+    [signature] VARBINARY (MAX) NULL,
+    [SignatureFileName ] VARCHAR(255) NULL, 
     PRIMARY KEY CLUSTERED ([id] ASC),
     FOREIGN KEY ([roleid]) REFERENCES [dbo].[Roles] ([Id])
 );
+
 
 CREATE TABLE dbo.Roles (
     [Id]         INT           IDENTITY (1, 1) NOT NULL,
@@ -46,7 +48,9 @@ WHERE year = 2023;
 EXEC [dbo].[getTaxByYears] 2023;
 
 EXEC [dbo].[getUser] 6;
+	INSERT INTO dbo.Users (username,fullname, password, roleid)
 
+EXEC [dbo].[insertUser] 'test22','test012','123',1 ;
 -- Stores Procedures
 /****** Object:  StoredProcedure [dbo].[getAllRoles]    Script Date: 2/20/2023 14:09:31 ******/
 SET ANSI_NULLS ON
@@ -186,19 +190,23 @@ GO
 -- insertUser
 -- =============================================
 ALTER PROCEDURE [dbo].[insertUser]
-@fullname Varchar(250),
-@username Varchar(250),
-@password Varchar(max),
-@roleid int
+    @username VARCHAR(250),
+    @fullname VARCHAR(250),
+    @password VARCHAR(MAX),
+    @roleid INT,
+    @newid INT OUTPUT
 
 AS
 BEGIN
 
 BEGIN TRANSACTION
 BEGIN TRY
+SET NOCOUNT ON;
 
-	INSERT INTO dbo.Users (username,fullname, password, roleid)
-    values(@username,@fullname,@password,@roleid);
+    INSERT INTO Users (username, fullname, password, roleid)
+    VALUES (@username, @fullname, @password, @roleid);
+
+    SET @newid = SCOPE_IDENTITY();
 
 	COMMIT;
 END TRY
