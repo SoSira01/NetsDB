@@ -199,6 +199,7 @@ ALTER PROCEDURE [dbo].[insertUser]
     @lastname VARCHAR(250),
     @password VARCHAR(MAX),
     @roleid INT,
+	@active INT,
     @newid INT OUTPUT
 
 AS
@@ -208,20 +209,19 @@ BEGIN TRANSACTION
 BEGIN TRY
 SET NOCOUNT ON;
 
-    INSERT INTO Users (username, firstname,lastname, password, roleid)
-    VALUES (@username, @firstname,@lastname, @password, @roleid);
+    INSERT INTO Users (username, firstname,lastname, password, roleid,active)
+    VALUES (@username, @firstname,@lastname, @password, @roleid, @active);
+
+    SET @newid = SCOPE_IDENTITY();
+
 	COMMIT;
 END TRY
 BEGIN CATCH
 	IF @@TRANCOUNT > 0
 		ROLLBACK;
 END CATCH
+
 END
-/****** Object:  StoredProcedure [dbo].[Login]    Script Date: 2/20/2023 14:11:49 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
 -- =============================================
 -- Login
 -- =============================================
@@ -268,15 +268,16 @@ GO
 -- =============================================
 ALTER PROCEDURE [dbo].[updateUser]
     @id INT,
-    @fullname VARCHAR(250),
+    @firstname VARCHAR(250),
+	@lastname VARCHAR(250),
+	@active INT,
 	@roleid INT
 AS
 BEGIN
     UPDATE dbo.Users
-    SET fullname = @fullname, roleid = @roleid
+    SET firstname = @firstname, lastname = @lastname, roleid = @roleid, active = @active
     WHERE id = @id;
 END;
-GO
 /****** Object:  StoredProcedure [dbo].[updateUsersignature]    Script Date: 2/20/2023 14:12:26 ******/
 SET ANSI_NULLS ON
 GO
