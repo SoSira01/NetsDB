@@ -3,16 +3,20 @@ GO
 --CREATE TABLE
 
 CREATE TABLE [dbo].[Users] (
-    [id]        INT  IDENTITY (1, 1) NOT NULL,
-    [username]  VARCHAR (250)   NULL,
-    [fullname]  VARCHAR (250)   NULL,
-    [password]  VARCHAR (MAX)   NULL,
-    [roleid]    INT             NULL,
-    [signature] VARBINARY (MAX) NULL,
-    [SignatureFileName ] VARCHAR(255) NULL, 
+    [id]                INT             IDENTITY (1, 1) NOT NULL,
+    [username]          VARCHAR (250)   NULL,
+    [firstname] VARCHAR(250) NULL, 
+    [lastname] VARCHAR(250) NULL, 
+    [fullname]          VARCHAR (250)   NULL,
+    [password]          VARCHAR (MAX)   NULL,
+    [roleid]            INT             NULL,
+    [signature]         VARBINARY (MAX) NULL,
+    [SignatureFileName] VARCHAR (250)   NULL,
     PRIMARY KEY CLUSTERED ([id] ASC),
     FOREIGN KEY ([roleid]) REFERENCES [dbo].[Roles] ([Id])
 );
+
+
 
 
 CREATE TABLE dbo.Roles (
@@ -191,7 +195,8 @@ GO
 -- =============================================
 ALTER PROCEDURE [dbo].[insertUser]
     @username VARCHAR(250),
-    @fullname VARCHAR(250),
+    @firstname VARCHAR(250),
+    @lastname VARCHAR(250),
     @password VARCHAR(MAX),
     @roleid INT,
     @newid INT OUTPUT
@@ -203,11 +208,8 @@ BEGIN TRANSACTION
 BEGIN TRY
 SET NOCOUNT ON;
 
-    INSERT INTO Users (username, fullname, password, roleid)
-    VALUES (@username, @fullname, @password, @roleid);
-
-    SET @newid = SCOPE_IDENTITY();
-
+    INSERT INTO Users (username, firstname,lastname, password, roleid)
+    VALUES (@username, @firstname,@lastname, @password, @roleid);
 	COMMIT;
 END TRY
 BEGIN CATCH
@@ -245,18 +247,17 @@ GO
 -- =============================================
 -- UpdateRole
 -- =============================================
-ALTER PROCEDURE [dbo].[updateRole]
+ALTER PROCEDURE [dbo].[updateUser]
     @id INT,
-    @rolename VARCHAR(250),
-    @permission VARCHAR(max)
+    @firstname VARCHAR(250),
+	@lastname VARCHAR(250),
+	@roleid INT
 AS
 BEGIN
-    UPDATE dbo.Roles
-    SET
-        rolename = @rolename,
-		permission = @permission
-    WHERE id = @id
-END
+    UPDATE dbo.Users
+    SET firstname = @firstname, lastname = @lastname, roleid = @roleid
+    WHERE id = @id;
+END;
 /****** Object:  StoredProcedure [dbo].[updateUser]    Script Date: 2/20/2023 14:12:18 ******/
 SET ANSI_NULLS ON
 GO
