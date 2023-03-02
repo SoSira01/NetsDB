@@ -199,7 +199,6 @@ ALTER PROCEDURE [dbo].[insertUser]
     @lastname VARCHAR(250),
     @password VARCHAR(MAX),
     @roleid INT,
-	@active INT,
     @newid INT OUTPUT
 
 AS
@@ -210,7 +209,7 @@ BEGIN TRY
 SET NOCOUNT ON;
 
     INSERT INTO Users (username, firstname,lastname, password, roleid,active)
-    VALUES (@username, @firstname,@lastname, @password, @roleid, @active);
+    VALUES (@username, @firstname,@lastname, @password, @roleid, 1);
 
     SET @newid = SCOPE_IDENTITY();
 
