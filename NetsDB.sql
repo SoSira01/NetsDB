@@ -55,6 +55,9 @@ EXEC [dbo].[getUser] 6;
 	INSERT INTO dbo.Users (username,fullname, password, roleid)
 
 EXEC [dbo].[insertUser] 'test22','test012','123',1 ;
+
+EXEC [dbo].[getDataGroups] 'g101';
+
 -- Stores Procedures
 /****** Object:  StoredProcedure [dbo].[getAllRoles]    Script Date: 2/20/2023 14:09:31 ******/
 SET ANSI_NULLS ON
