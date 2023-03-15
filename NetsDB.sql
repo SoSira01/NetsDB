@@ -60,7 +60,7 @@ EXEC [dbo].[getDataGroups] 'g101';
 
 EXEC [dbo].[insertDataGroups] 'create','title','test','M',1,'Product','Admin','Admin';
 -- Stores Procedures
-/****** Object:  StoredProcedure [dbo].[getAllRoles]    Script Date: 2/20/2023 14:09:31 ******/
+/****** Object:  StoredProcedure [dbo].[getAllRoles] ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -77,7 +77,7 @@ BEGIN
 	FROM dbo.Roles
 
 END
-/****** Object:  StoredProcedure [dbo].[GetAllUsers]    Script Date: 2/20/2023 14:09:42 ******/
+/****** Object:  StoredProcedure [dbo].[GetAllUsers] ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -94,7 +94,7 @@ BEGIN
 	FROM dbo.Users
 
 END
-/****** Object:  StoredProcedure [dbo].[getRole]    Script Date: 2/20/2023 14:10:03 ******/
+/****** Object:  StoredProcedure [dbo].[getRole] ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -113,7 +113,7 @@ BEGIN
 
 
 END
-/****** Object:  StoredProcedure [dbo].[getTaxByYears]    Script Date: 2/20/2023 14:10:27 ******/
+/****** Object:  StoredProcedure [dbo].[getTaxByYears] ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -125,7 +125,7 @@ AS
 BEGIN
     SELECT * FROM Tax WHERE year = @year;
 END
-/****** Object:  StoredProcedure [dbo].[getUser]    Script Date: 2/20/2023 14:10:48 ******/
+/****** Object:  StoredProcedure [dbo].[getUser] ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -144,7 +144,7 @@ BEGIN
 
 
 END
-/****** Object:  StoredProcedure [dbo].[getUsersignature]    Script Date: 2/20/2023 14:10:59 ******/
+/****** Object:  StoredProcedure [dbo].[getUsersignature] ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -161,7 +161,7 @@ BEGIN
     SET signature = @signature
     WHERE id = @id;
 END
-/****** Object:  StoredProcedure [dbo].[insertRole]    Script Date: 2/20/2023 14:11:16 ******/
+/****** Object:  StoredProcedure [dbo].[insertRole] ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -189,7 +189,7 @@ BEGIN CATCH
 END CATCH
 
 END
-/****** Object:  StoredProcedure [dbo].[insertUser]    Script Date: 2/20/2023 14:11:31 ******/
+/****** Object:  StoredProcedure [dbo].[insertUser] ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -225,6 +225,11 @@ BEGIN CATCH
 END CATCH
 
 END
+/****** Object:  StoredProcedure [dbo].[Login] ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
 -- =============================================
 -- Login
 -- =============================================
@@ -242,7 +247,7 @@ BEGIN
     WHERE username  COLLATE SQL_Latin1_General_CP1_CS_AS  = @username AND password = @password
 END
 SET ANSI_NULLS ON
-/****** Object:  StoredProcedure [dbo].[updateRole]    Script Date: 2/20/2023 14:11:58 ******/
+/****** Object:  StoredProcedure [dbo].[updateRole] ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -261,7 +266,7 @@ BEGIN
     SET firstname = @firstname, lastname = @lastname, roleid = @roleid
     WHERE id = @id;
 END;
-/****** Object:  StoredProcedure [dbo].[updateUser]    Script Date: 2/20/2023 14:12:18 ******/
+/****** Object:  StoredProcedure [dbo].[updateUser] ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -281,7 +286,7 @@ BEGIN
     SET firstname = @firstname, lastname = @lastname, roleid = @roleid, active = @active
     WHERE id = @id;
 END;
-/****** Object:  StoredProcedure [dbo].[updateUsersignature]    Script Date: 2/20/2023 14:12:26 ******/
+/****** Object:  StoredProcedure [dbo].[updateUsersignature] ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -297,4 +302,25 @@ BEGIN
     UPDATE dbo.Users
     SET signature = @signature
     WHERE id = @id;
-END
+END;
+/****** Object:  StoredProcedure [dbo].[InsertExcelData] ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- InsertExcelData
+-- =============================================
+ALTER PROCEDURE [dbo].[InsertExcelData]
+    @username varchar(250),
+    @firstname varchar(250),
+    @lastname varchar(250),
+    @password varchar(max),
+    @roleid int
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    INSERT INTO Users (Username, FirstName, LastName, Password, RoleId)
+    VALUES (@username, @firstname, @lastname, @password, @roleid)
+END;
