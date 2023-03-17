@@ -59,6 +59,31 @@ EXEC [dbo].[insertUser] 'test22','test012','123',1 ;
 EXEC [dbo].[getDataGroups] 'g101';
 
 EXEC [dbo].[insertDataGroups] 'create','title','test','M',1,'Product','Admin','Admin';
+
+declare @ref_year INT = 2022
+declare @ref_no VARCHAR(5) = '1'
+declare @transaction_no INT = 2
+
+	SELECT *
+	FROM dbo.NETS_Income
+	Where ref_year = @ref_year
+	AND ref_no = @ref_no
+	AND transaction_no = @transaction_no
+
+EXEC [dbo].[getincome] '4','1',2;
+
+declare @tax_id VARCHAR(50) = 'tax_01'
+declare @effective_date date = '2000-01-01'
+declare @tax_range_begin int = 0
+
+EXECUTE [dbo].[getTaxById] @tax_id, @effective_date, @tax_range_begin;
+
+SELECT * 
+FROM NETS_Tax_Terms 
+WHERE  tax_id = @tax_id
+AND effective_date = @effective_date
+AND tax_range_begin = @tax_range_begin;
+
 -- Stores Procedures
 /****** Object:  StoredProcedure [dbo].[getAllRoles] ******/
 SET ANSI_NULLS ON
