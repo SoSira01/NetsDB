@@ -60,6 +60,8 @@ EXEC [dbo].[getDataGroups] 'g101';
 
 EXEC [dbo].[insertDataGroups] 'create','title','test','M',1,'Product','Admin','Admin';
 
+EXEC  [dbo].[postListOfValues] '1','1',false,'1','1','Product';
+
 declare @ref_year INT = 2022
 declare @ref_no VARCHAR(5) = '1'
 declare @transaction_no INT = 2
