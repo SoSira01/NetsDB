@@ -62,6 +62,27 @@ EXEC [dbo].[insertDataGroups] 'create','title','test','M',1,'Product','Admin','A
 
 EXEC  [dbo].[postListOfValues] '1','1',false,'1','1','Product';
 
+EXEC  [dbo].[getAllUser] ;
+
+SELECT u1.oa_user
+	,u1.active
+	,ISNULL(i.first_name_en, '') first_name_en
+	,ISNULL(i.last_name_en, '') last_name_en
+	,ISNULL(i.first_name_th, '') first_name_th
+	,ISNULL(i.last_name_th, '') last_name_th
+	,ISNULL(i.division_code, '') division_code
+	,ISNULL(i.division_name, '') division_name
+	,r.role_title
+	,g.group_title data_group_title
+	,l2.lov_description team_title
+	,l1.lov_description data_product_title
+FROM dbo.NETS_User_Profiles u1
+LEFT JOIN dbo.NETS_User_Profiles_Info i ON i.oa_user = u1.oa_user AND u1.active = 1
+JOIN dbo.NETS_Roles r ON r.role_id = u1.role_id
+JOIN dbo.NETS_Data_Groups g ON g.group_id = u1.data_group_id
+JOIN dbo.NETS_List_of_Values l1 ON l1.lov_field = 'Product' AND l1.lov_code = u1.team_id
+JOIN dbo.NETS_List_of_Values l2 ON l2.lov_field = 'Team' AND l2.lov_code = u1.team_id
+
 declare @ref_year INT = 2022
 declare @ref_no VARCHAR(5) = '1'
 declare @transaction_no INT = 2
@@ -72,7 +93,15 @@ declare @transaction_no INT = 2
 	AND ref_no = @ref_no
 	AND transaction_no = @transaction_no
 
-EXEC [dbo].[getincome] '4','1',2;
+EXEC [dbo].[getIncome] '4','1',2;
+
+EXEC [dbo].[FindUser] 'User-01','aaa','aaa';
+
+EXEC [dbo].[RolePermission] 'User-01'
+
+EXEC [dbo].[getAllUser]
+
+EXEC [dbo].[getAllRoles]
 
 declare @tax_id VARCHAR(50) = 'tax_01'
 declare @effective_date date = '2000-01-01'
