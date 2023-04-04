@@ -1,4 +1,4 @@
-USE [Nets]
+﻿USE [Nets]
 GO
 --CREATE TABLE
 
@@ -63,6 +63,36 @@ EXEC [dbo].[insertDataGroups] 'create','title','test','M',1,'Product','Admin','A
 EXEC  [dbo].[postListOfValues] '1','1',false,'1','1','Product';
 
 EXEC  [dbo].[getAllUser] ;
+
+EXEC  [dbo].[FindUser] 'admin';
+
+ declare   @oa_user VARCHAR(50) = ''
+ declare   @fname VARCHAR(100) = 'ผู้ใช้งาน'
+ declare  @lname VARCHAR(100) = 'สินเชื่อบ้าน'
+
+SELECT u1.oa_user
+	,u1.active
+	,i.first_name_en
+	,i.last_name_en
+	,i.first_name_th
+	,i.last_name_th
+	,i.division_code
+	,i.division_name
+	,r.role_id
+	,r.role_title
+	,u1.data_group_id
+	,g.team_id
+	,g.product_id data_product_id
+FROM dbo.NETS_User_Profiles u1
+     JOIN dbo.NETS_User_Profiles_Info i ON i.oa_user = u1.oa_user
+     JOIN dbo.NETS_Roles r ON r.role_id = u1.role_id
+     JOIN dbo.NETS_Data_Groups g ON g.group_id = u1.data_group_id
+	 JOIN dbo.NETS_List_of_Values l1 ON l1.lov_code = u1.team_id
+     JOIN dbo.NETS_List_of_Values l2 ON l2.lov_code = u1.team_id
+	 AND u1.oa_user LIKE '%' + @oa_user +'%'
+     AND (i.first_name_en + i.first_name_th) LIKE '%' + @fname + '%'
+     AND (i.last_name_en + i.last_name_th) LIKE '%' + @lname + '%';
+
 
 SELECT u1.oa_user
 	,u1.active
