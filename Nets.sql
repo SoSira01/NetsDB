@@ -1,6 +1,6 @@
-USE [master]
+﻿USE [master]
 GO
-/****** Object:  Database [Nets]    Script Date: 4/25/2023 14:47:01 ******/
+/****** Object:  Database [Nets]    Script Date: 4/27/2023 16:52:27 ******/
 CREATE DATABASE [Nets]
  CONTAINMENT = NONE
  ON  PRIMARY 
@@ -84,14 +84,14 @@ ALTER DATABASE [Nets] SET QUERY_STORE (OPERATION_MODE = READ_WRITE, CLEANUP_POLI
 GO
 USE [Nets]
 GO
-/****** Object:  UserDefinedTableType [dbo].[insertRole]    Script Date: 4/25/2023 14:47:02 ******/
+/****** Object:  UserDefinedTableType [dbo].[insertRole]    Script Date: 4/27/2023 16:52:27 ******/
 CREATE TYPE [dbo].[insertRole] AS TABLE(
 	[id] [int] NULL,
 	[rolename] [varchar](max) NULL,
 	[permission] [varchar](max) NULL
 )
 GO
-/****** Object:  UserDefinedTableType [dbo].[insertUser]    Script Date: 4/25/2023 14:47:02 ******/
+/****** Object:  UserDefinedTableType [dbo].[insertUser]    Script Date: 4/27/2023 16:52:27 ******/
 CREATE TYPE [dbo].[insertUser] AS TABLE(
 	[id] [int] NULL,
 	[fullname] [varchar](max) NULL,
@@ -99,14 +99,23 @@ CREATE TYPE [dbo].[insertUser] AS TABLE(
 	[roleid] [int] NULL
 )
 GO
-/****** Object:  UserDefinedTableType [dbo].[roles_type]    Script Date: 4/25/2023 14:47:02 ******/
+/****** Object:  UserDefinedTableType [dbo].[manual_income_upload_type]    Script Date: 4/27/2023 16:52:27 ******/
+CREATE TYPE [dbo].[manual_income_upload_type] AS TABLE(
+	[national_id] [varchar](13) NOT NULL,
+	[group_id] [varchar](50) NOT NULL,
+	[amount] [decimal](17, 2) NOT NULL,
+	[sales_code] [varchar](10) NULL,
+	[remark] [varchar](max) NULL
+)
+GO
+/****** Object:  UserDefinedTableType [dbo].[roles_type]    Script Date: 4/27/2023 16:52:27 ******/
 CREATE TYPE [dbo].[roles_type] AS TABLE(
 	[id] [int] NOT NULL,
 	[rolename] [varchar](100) NOT NULL,
 	[permission] [varchar](max) NULL
 )
 GO
-/****** Object:  UserDefinedFunction [dbo].[getRunningIncomeRefNo]    Script Date: 4/25/2023 14:47:02 ******/
+/****** Object:  UserDefinedFunction [dbo].[getRunningIncomeRefNo]    Script Date: 4/27/2023 16:52:27 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -129,7 +138,7 @@ BEGIN
 
 END
 GO
-/****** Object:  Table [dbo].[NETS_Batch_Calendars]    Script Date: 4/25/2023 14:47:02 ******/
+/****** Object:  Table [dbo].[NETS_Batch_Calendars]    Script Date: 4/27/2023 16:52:27 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -151,7 +160,7 @@ CREATE TABLE [dbo].[NETS_Batch_Calendars](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[NETS_Data_Groups]    Script Date: 4/25/2023 14:47:02 ******/
+/****** Object:  Table [dbo].[NETS_Data_Groups]    Script Date: 4/27/2023 16:52:27 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -173,7 +182,7 @@ CREATE TABLE [dbo].[NETS_Data_Groups](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[NETS_Incomes]    Script Date: 4/25/2023 14:47:02 ******/
+/****** Object:  Table [dbo].[NETS_Incomes]    Script Date: 4/27/2023 16:52:27 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -217,7 +226,7 @@ CREATE TABLE [dbo].[NETS_Incomes](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[NETS_List_of_Values]    Script Date: 4/25/2023 14:47:02 ******/
+/****** Object:  Table [dbo].[NETS_List_of_Values]    Script Date: 4/27/2023 16:52:27 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -239,7 +248,7 @@ CREATE TABLE [dbo].[NETS_List_of_Values](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[NETS_Payees]    Script Date: 4/25/2023 14:47:02 ******/
+/****** Object:  Table [dbo].[NETS_Payees]    Script Date: 4/27/2023 16:52:27 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -249,10 +258,14 @@ CREATE TABLE [dbo].[NETS_Payees](
 	[pre_name] [varchar](20) NOT NULL,
 	[first_name] [varchar](100) NOT NULL,
 	[last_name] [varchar](100) NOT NULL,
+	[address_build_name] [varchar](40) NULL,
+	[address_room_no] [varchar](20) NULL,
+	[address_floor_no] [varchar](20) NULL,
+	[address_village_name] [varchar](100) NULL,
 	[address_no] [varchar](40) NOT NULL,
-	[address_build_name] [varchar](40) NOT NULL,
-	[address_soi] [varchar](100) NOT NULL,
-	[address_street_name] [varchar](100) NOT NULL,
+	[address_moo_no] [varchar](20) NULL,
+	[address_soi] [varchar](100) NULL,
+	[address_street_name] [varchar](100) NULL,
 	[address_tambon] [varchar](50) NOT NULL,
 	[address_amphur] [varchar](50) NOT NULL,
 	[address_province] [varchar](50) NOT NULL,
@@ -269,7 +282,7 @@ CREATE TABLE [dbo].[NETS_Payees](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[NETS_Roles]    Script Date: 4/25/2023 14:47:02 ******/
+/****** Object:  Table [dbo].[NETS_Roles]    Script Date: 4/27/2023 16:52:27 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -319,7 +332,7 @@ CREATE TABLE [dbo].[NETS_Roles](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[NETS_Tax_Deduction_Terms]    Script Date: 4/25/2023 14:47:02 ******/
+/****** Object:  Table [dbo].[NETS_Tax_Deduction_Terms]    Script Date: 4/27/2023 16:52:27 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -339,7 +352,7 @@ CREATE TABLE [dbo].[NETS_Tax_Deduction_Terms](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[NETS_Tax_Terms]    Script Date: 4/25/2023 14:47:02 ******/
+/****** Object:  Table [dbo].[NETS_Tax_Terms]    Script Date: 4/27/2023 16:52:27 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -360,7 +373,7 @@ CREATE TABLE [dbo].[NETS_Tax_Terms](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[NETS_User_Profiles]    Script Date: 4/25/2023 14:47:02 ******/
+/****** Object:  Table [dbo].[NETS_User_Profiles]    Script Date: 4/27/2023 16:52:27 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -382,7 +395,7 @@ CREATE TABLE [dbo].[NETS_User_Profiles](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[NETS_User_Profiles_Info]    Script Date: 4/25/2023 14:47:02 ******/
+/****** Object:  Table [dbo].[NETS_User_Profiles_Info]    Script Date: 4/27/2023 16:52:27 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -445,7 +458,153 @@ ALTER TABLE [dbo].[NETS_User_Profiles] ADD  CONSTRAINT [DF_UserProfiles_created_
 GO
 ALTER TABLE [dbo].[NETS_User_Profiles] ADD  CONSTRAINT [DF_UserProfiles_updated_date]  DEFAULT (getdate()) FOR [updated_date]
 GO
-/****** Object:  StoredProcedure [dbo].[deleteTaxTerm]    Script Date: 4/25/2023 14:47:02 ******/
+/****** Object:  StoredProcedure [dbo].[checkManualIncomeUpload]    Script Date: 4/27/2023 16:52:27 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[checkManualIncomeUpload]
+@lists manual_income_upload_type READONLY
+,@username varchar(50)
+AS
+BEGIN
+	
+	-- initial data group child for validate group id in payload
+	DECLARE @group_table TABLE(group_id varchar(50));
+	
+	WITH data_group_hierarchy AS ( 
+        SELECT h1.*
+        FROM dbo.NETS_Data_Groups AS h1
+		JOIN dbo.NETS_User_Profiles u ON u.oa_user = @username
+									AND h1.group_id = u.data_group_id -- parameter
+
+        UNION ALL
+
+        SELECT c2.*
+        FROM data_group_hierarchy AS c1
+        JOIN dbo.NETS_Data_Groups AS c2
+        ON c2.parent_group_id = c1.group_id)
+	-- keep record to table varable
+	INSERT INTO @group_table
+	SELECT d.group_id
+	FROM data_group_hierarchy d;
+
+	-- initial result table variable
+	DECLARE @result TABLE(
+		"no" int
+		,national_id varchar(13)
+		,group_id varchar(50)
+		,sales_code varchar(10)
+		,remark varchar(max)
+		,send_date varchar(10)
+		,account_no varchar(10)
+		,amount decimal(17, 2)
+		,pre_name varchar(50)
+		,first_name varchar(250)
+		,last_name varchar(250)
+		,result_status bit
+		,result_message varchar(250)
+	);
+	
+	INSERT INTO @result ("no", national_id, group_id, sales_code, remark, amount, result_status, result_message)
+	SELECT 
+		ROW_NUMBER() OVER(ORDER BY (SELECT null))
+		,l.national_id
+		,l.group_id
+		,ISNULL(l.sales_code, '')
+		,ISNULL(l.remark, '')
+		,l.amount
+		,1
+		,'Passed'
+	FROM @lists l;
+
+	-- check exist payee
+	-- not exist
+	UPDATE r
+	SET r.result_status = msg.result_status
+		,r.result_message = msg.result_message
+	FROM @result r
+	JOIN (SELECT 
+			l.no
+			,l.national_id
+			,0 result_status
+			,'ไม่พบผู้รับเงินในระบบ' result_message
+		FROM @result l
+		WHERE NOT EXISTS (SELECT 1 
+						FROM dbo.NETS_Payees p 
+						WHERE p.active = 1
+						AND p.national_id = l.national_id)) msg ON msg.national_id = r.national_id
+																AND msg.no = r.no;
+
+	-- exist
+	UPDATE r
+	SET r.account_no = p.account_no
+		,r.pre_name = p.pre_name
+		,r.first_name = p.first_name
+		,r.last_name = p.last_name
+	FROM @result r
+	JOIN (SELECT 
+			p.national_id
+			,p.account_no
+			,p.pre_name
+			,p.first_name
+			,p.last_name
+		FROM @lists l
+		JOIN dbo.NETS_Payees p ON p.active = 1
+								AND p.national_id = l.national_id) p ON p.national_id = r.national_id;
+
+	-- check data group id
+	UPDATE r
+	SET r.result_status = msg.result_status
+		,r.result_message = IIF(r.result_status = 0, CONCAT(r.result_message, ', ', msg.result_message), msg.result_message)
+	FROM @result r
+	JOIN (SELECT 
+				l.no
+				,l.national_id
+				,0 result_status
+				,'กลุ่มไม่ถูกต้อง' result_message
+			FROM @result l
+			WHERE NOT EXISTS (SELECT 1
+								FROM @group_table g 
+								WHERE g.group_id = l.group_id)) msg ON msg.national_id = r.national_id
+																	AND msg.no = r.no;
+
+	-- check amount
+	UPDATE r
+	SET r.result_status = msg.result_status
+		,r.result_message = IIF(r.result_status = 0, CONCAT(r.result_message, ', ', msg.result_message), msg.result_message)
+	FROM @result r
+	JOIN (SELECT 
+				l.no
+				,l.national_id
+				,0 result_status
+				,'จำนวนเงินไม่ถูกต้อง' result_message
+			FROM @result l
+			WHERE l.amount <= 0 ) msg ON msg.national_id = r.national_id
+									AND msg.no = r.no;
+
+
+
+	-- send date only status = 1
+	UPDATE @result
+	SET send_date = FORMAT(SYSDATETIME(), 'dd/MM/yyyy')
+	WHERE result_status = 1;
+
+
+
+	SELECT 
+		r.*
+		,COUNT(*) Over() as total_rows
+		,SUM(IIF(r.result_status = 1, 1, 0)) Over() as total_valid_rows
+		,SUM(IIF(r.result_status = 1, 0, 1)) Over() as total_error_rows
+		,SUM(r.amount) Over() as total_amount
+	FROM @result r
+	ORDER BY r.no ASC;
+
+
+END
+GO
+/****** Object:  StoredProcedure [dbo].[deleteTaxTerm]    Script Date: 4/27/2023 16:52:27 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -476,7 +635,7 @@ END CATCH
 
 END
 GO
-/****** Object:  StoredProcedure [dbo].[FindUser]    Script Date: 4/25/2023 14:47:02 ******/
+/****** Object:  StoredProcedure [dbo].[FindUser]    Script Date: 4/27/2023 16:52:27 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -511,7 +670,7 @@ FROM dbo.NETS_User_Profiles u1
      AND (i.last_name_en + i.last_name_th) LIKE '%' + @lname + '%';
 END
 GO
-/****** Object:  StoredProcedure [dbo].[getAllDataGroups]    Script Date: 4/25/2023 14:47:02 ******/
+/****** Object:  StoredProcedure [dbo].[getAllDataGroups]    Script Date: 4/27/2023 16:52:27 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -526,7 +685,7 @@ BEGIN
 
 END
 GO
-/****** Object:  StoredProcedure [dbo].[getAllIncome]    Script Date: 4/25/2023 14:47:02 ******/
+/****** Object:  StoredProcedure [dbo].[getAllIncome]    Script Date: 4/27/2023 16:52:27 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -541,7 +700,7 @@ BEGIN
 
 END
 GO
-/****** Object:  StoredProcedure [dbo].[getAllListOfValues]    Script Date: 4/25/2023 14:47:02 ******/
+/****** Object:  StoredProcedure [dbo].[getAllListOfValues]    Script Date: 4/27/2023 16:52:27 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -556,7 +715,7 @@ BEGIN
 
 END
 GO
-/****** Object:  StoredProcedure [dbo].[getAllPayees]    Script Date: 4/25/2023 14:47:02 ******/
+/****** Object:  StoredProcedure [dbo].[getAllPayees]    Script Date: 4/27/2023 16:52:27 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -571,7 +730,7 @@ BEGIN
 
 END
 GO
-/****** Object:  StoredProcedure [dbo].[getAllRoles]    Script Date: 4/25/2023 14:47:02 ******/
+/****** Object:  StoredProcedure [dbo].[getAllRoles]    Script Date: 4/27/2023 16:52:27 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -591,7 +750,7 @@ END
 /****** Object:  StoredProcedure [dbo].[GetAllUsers] ******/
 SET ANSI_NULLS ON
 GO
-/****** Object:  StoredProcedure [dbo].[getAllUser]    Script Date: 4/25/2023 14:47:02 ******/
+/****** Object:  StoredProcedure [dbo].[getAllUser]    Script Date: 4/27/2023 16:52:27 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -622,7 +781,7 @@ JOIN dbo.NETS_List_of_Values l2 ON l2.lov_field = 'Team' AND l2.lov_code = u1.te
 
 END
 GO
-/****** Object:  StoredProcedure [dbo].[getBatchCalendarByYear]    Script Date: 4/25/2023 14:47:02 ******/
+/****** Object:  StoredProcedure [dbo].[getBatchCalendarByYear]    Script Date: 4/27/2023 16:52:27 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -643,7 +802,7 @@ ORDER BY c.calendar_month ASC
 
 END
 GO
-/****** Object:  StoredProcedure [dbo].[getBatchCalendarByYearAndMonth]    Script Date: 4/25/2023 14:47:02 ******/
+/****** Object:  StoredProcedure [dbo].[getBatchCalendarByYearAndMonth]    Script Date: 4/27/2023 16:52:27 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -664,7 +823,7 @@ AND c.calendar_month = @month;
 
 END
 GO
-/****** Object:  StoredProcedure [dbo].[getBatchRunDate]    Script Date: 4/25/2023 14:47:02 ******/
+/****** Object:  StoredProcedure [dbo].[getBatchRunDate]    Script Date: 4/27/2023 16:52:27 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -683,7 +842,7 @@ FROM dbo.NETS_Batch_Calandars c
 WHERE c.batch_run_date IS NULL
 END
 GO
-/****** Object:  StoredProcedure [dbo].[getCalendarYear]    Script Date: 4/25/2023 14:47:02 ******/
+/****** Object:  StoredProcedure [dbo].[getCalendarYear]    Script Date: 4/27/2023 16:52:27 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -697,7 +856,7 @@ ORDER BY 1 ASC;
 
 END
 GO
-/****** Object:  StoredProcedure [dbo].[getDataGroups]    Script Date: 4/25/2023 14:47:02 ******/
+/****** Object:  StoredProcedure [dbo].[getDataGroups]    Script Date: 4/27/2023 16:52:27 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -713,7 +872,7 @@ BEGIN
    
 END
 GO
-/****** Object:  StoredProcedure [dbo].[GetEffective]    Script Date: 4/25/2023 14:47:02 ******/
+/****** Object:  StoredProcedure [dbo].[GetEffective]    Script Date: 4/27/2023 16:52:27 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -730,7 +889,7 @@ JOIN (SELECT MAX(t.effective_date) effective_date
         ON m_t.effective_date = tax.effective_date
 END
 GO
-/****** Object:  StoredProcedure [dbo].[getIncome]    Script Date: 4/25/2023 14:47:02 ******/
+/****** Object:  StoredProcedure [dbo].[getIncome]    Script Date: 4/27/2023 16:52:27 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -750,7 +909,7 @@ BEGIN
 
 END
 GO
-/****** Object:  StoredProcedure [dbo].[getListDataGroups]    Script Date: 4/25/2023 14:47:02 ******/
+/****** Object:  StoredProcedure [dbo].[getListDataGroups]    Script Date: 4/27/2023 16:52:27 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -762,7 +921,7 @@ Begin
 	From NETS_Data_Groups
 End
 GO
-/****** Object:  StoredProcedure [dbo].[getListEffectiveDate]    Script Date: 4/25/2023 14:47:02 ******/
+/****** Object:  StoredProcedure [dbo].[getListEffectiveDate]    Script Date: 4/27/2023 16:52:27 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -777,7 +936,7 @@ BEGIN
 
 END
 GO
-/****** Object:  StoredProcedure [dbo].[getListOfValues]    Script Date: 4/25/2023 14:47:02 ******/
+/****** Object:  StoredProcedure [dbo].[getListOfValues]    Script Date: 4/27/2023 16:52:27 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -795,7 +954,7 @@ BEGIN
 
 END
 GO
-/****** Object:  StoredProcedure [dbo].[getListParents]    Script Date: 4/25/2023 14:47:02 ******/
+/****** Object:  StoredProcedure [dbo].[getListParents]    Script Date: 4/27/2023 16:52:27 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -808,7 +967,7 @@ Begin
 
 End
 GO
-/****** Object:  StoredProcedure [dbo].[getListPreName]    Script Date: 4/25/2023 14:47:02 ******/
+/****** Object:  StoredProcedure [dbo].[getListPreName]    Script Date: 4/27/2023 16:52:27 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -825,7 +984,7 @@ AND l2.lov_active = 1
 
 END
 GO
-/****** Object:  StoredProcedure [dbo].[getListProducts]    Script Date: 4/25/2023 14:47:02 ******/
+/****** Object:  StoredProcedure [dbo].[getListProducts]    Script Date: 4/27/2023 16:52:27 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -841,7 +1000,7 @@ Begin
 
 End
 GO
-/****** Object:  StoredProcedure [dbo].[getListRole]    Script Date: 4/25/2023 14:47:02 ******/
+/****** Object:  StoredProcedure [dbo].[getListRole]    Script Date: 4/27/2023 16:52:27 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -853,7 +1012,7 @@ Begin
 	From NETS_Roles
 End
 GO
-/****** Object:  StoredProcedure [dbo].[getListTaxRate]    Script Date: 4/25/2023 14:47:02 ******/
+/****** Object:  StoredProcedure [dbo].[getListTaxRate]    Script Date: 4/27/2023 16:52:27 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -874,7 +1033,7 @@ ORDER BY t.tax_range_begin ASC;
 
 END
 GO
-/****** Object:  StoredProcedure [dbo].[getListTeams]    Script Date: 4/25/2023 14:47:02 ******/
+/****** Object:  StoredProcedure [dbo].[getListTeams]    Script Date: 4/27/2023 16:52:27 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -890,7 +1049,7 @@ Begin
 
 End
 GO
-/****** Object:  StoredProcedure [dbo].[getManualIncome]    Script Date: 4/25/2023 14:47:02 ******/
+/****** Object:  StoredProcedure [dbo].[getManualIncome]    Script Date: 4/27/2023 16:52:27 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -930,7 +1089,7 @@ BEGIN
 
 END
 GO
-/****** Object:  StoredProcedure [dbo].[getManualIncomeHistory]    Script Date: 4/25/2023 14:47:02 ******/
+/****** Object:  StoredProcedure [dbo].[getManualIncomeHistory]    Script Date: 4/27/2023 16:52:27 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -973,7 +1132,7 @@ BEGIN
 
 END
 GO
-/****** Object:  StoredProcedure [dbo].[getNextCalendar]    Script Date: 4/25/2023 14:47:02 ******/
+/****** Object:  StoredProcedure [dbo].[getNextCalendar]    Script Date: 4/27/2023 16:52:27 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -992,7 +1151,7 @@ WHERE c.batch_run_date IS NULL
 
 END
 GO
-/****** Object:  StoredProcedure [dbo].[getPayeesById]    Script Date: 4/25/2023 14:47:02 ******/
+/****** Object:  StoredProcedure [dbo].[getPayeesById]    Script Date: 4/27/2023 16:52:27 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1002,13 +1161,30 @@ CREATE PROCEDURE [dbo].[getPayeesById]
 AS
 BEGIN
 
-    SELECT * 
-	FROM NETS_Payees 
-	WHERE national_id = @national_id;
+SELECT national_id
+	,pre_name
+	,first_name
+	,last_name
+	,address_no
+	,address_moo_no
+	,address_build_name
+	,address_room_no
+	,address_floor_no
+	,address_village_name
+	,address_soi
+	,address_street_name
+	,address_tambon
+	,address_amphur
+	,address_province
+	,address_postal_code
+	,account_no
+	,active
+FROM dbo.NETS_Payees
+WHERE national_id = @national_id
 
 END
 GO
-/****** Object:  StoredProcedure [dbo].[getRole]    Script Date: 4/25/2023 14:47:02 ******/
+/****** Object:  StoredProcedure [dbo].[getRole]    Script Date: 4/27/2023 16:52:27 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1027,7 +1203,7 @@ BEGIN
 
 END
 GO
-/****** Object:  StoredProcedure [dbo].[getTaxByDate]    Script Date: 4/25/2023 14:47:02 ******/
+/****** Object:  StoredProcedure [dbo].[getTaxByDate]    Script Date: 4/27/2023 16:52:27 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1047,7 +1223,7 @@ WHERE d.effective_date = @eff_date;
 
 END
 GO
-/****** Object:  StoredProcedure [dbo].[getTaxByEffDate]    Script Date: 4/25/2023 14:47:02 ******/
+/****** Object:  StoredProcedure [dbo].[getTaxByEffDate]    Script Date: 4/27/2023 16:52:27 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1068,7 +1244,7 @@ ORDER BY t.tax_range_begin ASC;
 
 END
 GO
-/****** Object:  StoredProcedure [dbo].[getTaxById]    Script Date: 4/25/2023 14:47:02 ******/
+/****** Object:  StoredProcedure [dbo].[getTaxById]    Script Date: 4/27/2023 16:52:27 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1084,7 +1260,25 @@ BEGIN
     AND tax_range_begin = @tax_range_begin;
 END
 GO
-/****** Object:  StoredProcedure [dbo].[getUserName]    Script Date: 4/25/2023 14:47:02 ******/
+/****** Object:  StoredProcedure [dbo].[GetUploadTemplate]    Script Date: 4/27/2023 16:52:27 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[GetUploadTemplate]
+
+AS
+	BEGIN
+  SELECT 
+	  lov_description url
+	  ,lov_condition filename
+  FROM dbo.NETS_List_of_Values
+  WHERE lov_field = 'IncomeUpload'
+  AND lov_code = 'Template'
+
+END
+GO
+/****** Object:  StoredProcedure [dbo].[getUserName]    Script Date: 4/27/2023 16:52:27 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1116,7 +1310,7 @@ JOIN dbo.NETS_List_of_Values l1 ON l1.lov_code = u1.team_id
 WHERE u1.oa_user = @oa_user
 END
 GO
-/****** Object:  StoredProcedure [dbo].[Login]    Script Date: 4/25/2023 14:47:02 ******/
+/****** Object:  StoredProcedure [dbo].[Login]    Script Date: 4/27/2023 16:52:27 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1141,7 +1335,7 @@ SET ANSI_NULLS ON
 /****** Object:  StoredProcedure [dbo].[updateRole] ******/
 SET ANSI_NULLS ON
 GO
-/****** Object:  StoredProcedure [dbo].[postBatchCalendar]    Script Date: 4/25/2023 14:47:02 ******/
+/****** Object:  StoredProcedure [dbo].[postBatchCalendar]    Script Date: 4/27/2023 16:52:27 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1177,7 +1371,7 @@ BEGIN CATCH
 END CATCH
 END
 GO
-/****** Object:  StoredProcedure [dbo].[postDataGroups]    Script Date: 4/25/2023 14:47:02 ******/
+/****** Object:  StoredProcedure [dbo].[postDataGroups]    Script Date: 4/27/2023 16:52:27 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1227,7 +1421,7 @@ END CATCH
 
 END
 GO
-/****** Object:  StoredProcedure [dbo].[postListOfValues]    Script Date: 4/25/2023 14:47:02 ******/
+/****** Object:  StoredProcedure [dbo].[postListOfValues]    Script Date: 4/27/2023 16:52:27 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1269,11 +1463,13 @@ BEGIN CATCH
 	WHERE lov_field = @Field
 	AND lov_code = @Code;
 
+	COMMIT;
+
 END CATCH
 
 END
 GO
-/****** Object:  StoredProcedure [dbo].[postManualIncomeCancel]    Script Date: 4/25/2023 14:47:02 ******/
+/****** Object:  StoredProcedure [dbo].[postManualIncomeCancel]    Script Date: 4/27/2023 16:52:27 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1342,7 +1538,7 @@ END CATCH
 
 END
 GO
-/****** Object:  StoredProcedure [dbo].[postManualIncomeKeyin]    Script Date: 4/25/2023 14:47:02 ******/
+/****** Object:  StoredProcedure [dbo].[postManualIncomeKeyin]    Script Date: 4/27/2023 16:52:27 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1507,7 +1703,7 @@ END CATCH
 
 END
 GO
-/****** Object:  StoredProcedure [dbo].[postManualIncomeSubmit]    Script Date: 4/25/2023 14:47:02 ******/
+/****** Object:  StoredProcedure [dbo].[postManualIncomeSubmit]    Script Date: 4/27/2023 16:52:27 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1574,7 +1770,160 @@ END CATCH
 
 END
 GO
-/****** Object:  StoredProcedure [dbo].[postPayee]    Script Date: 4/25/2023 14:47:02 ******/
+/****** Object:  StoredProcedure [dbo].[postManualIncomeUploadSubmit]    Script Date: 4/27/2023 16:52:27 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE PROCEDURE [dbo].[postManualIncomeUploadSubmit]
+@lists manual_income_upload_type READONLY
+,@sum_amount decimal(17, 2)
+,@total_rows int
+,@username varchar(50)
+AS
+BEGIN
+
+BEGIN TRANSACTION
+BEGIN TRY
+	-- initial data group child for validate group id in payload
+	DECLARE @group_table TABLE(group_id varchar(50));
+	
+	-- keep record to table varable
+	INSERT INTO @group_table
+	SELECT g1.group_id
+	FROM dbo.NETS_Data_Groups g1
+	JOIN (SELECT d.product_id
+		FROM dbo.NETS_Data_Groups d
+		JOIN dbo.NETS_User_Profiles u ON u.data_group_id = d.group_id
+									AND u.oa_user = @username) g2 ON g2.product_id = g1.product_id;
+	
+	-- initial check sum, count row variable
+	DECLARE @count_row int, @sum decimal(17, 2);
+	SELECT 
+		@count_row = COUNT(*)
+		,@sum = SUM(l.amount)
+	FROM @lists l;
+
+	IF @total_rows <> @count_row OR @sum_amount <> @sum
+	BEGIN
+		SELECT '' ref_no_mask, (-1) Result;
+
+	END
+	ELSE
+	BEGIN
+	-- initial count error variable
+		DECLARE @error int = 0;
+		SELECT 
+			@error = COUNT(*)
+		FROM @lists l
+		WHERE NOT EXISTS (SELECT 1 
+						FROM dbo.NETS_Payees p 
+						WHERE p.active = 1
+						AND p.national_id = l.national_id);
+
+		IF @error > 0
+		BEGIN
+			SELECT '' ref_no_mask, (-2) Result;
+
+		END
+		ELSE
+		BEGIN
+			-- check data group id
+			SELECT 
+				@error = COUNT(*)
+			FROM @lists l
+			WHERE NOT EXISTS (SELECT 1
+								FROM @group_table g 
+								WHERE g.group_id = l.group_id);
+
+			IF @error > 0
+			BEGIN
+				SELECT '' ref_no_mask, (-3) Result;
+
+			END
+			ELSE
+			BEGIN
+			-- check amount
+				SELECT 
+					@error = COUNT(*)
+				FROM @lists l
+				WHERE l.amount <= 0;
+
+				IF @error > 0
+				BEGIN
+					SELECT '' ref_no_mask, (-4) Result;
+
+				END
+				ELSE
+				BEGIN
+				-- initial ref year
+					DECLARE @year int;
+					SELECT @year = YEAR(MAX(c.calendar_run_date))
+					FROM dbo.NETS_Batch_Calendars c
+					WHERE c.batch_run_date IS NULL;
+
+				-- initial ref no
+					DECLARE @ref_no_new varchar(5) = dbo.getRunningIncomeRefNo(@year);
+
+				-- insert records
+					INSERT INTO dbo.NETS_Incomes (
+						 ref_year
+						,ref_no
+						,transaction_no
+						,ref_status
+						,national_id
+						,account_no
+						,amount
+						,group_id
+						,sales_code
+						,remark
+						,source
+						,created_date
+						,created_by
+						,updated_date
+						,updated_by)
+					SELECT
+						@year                                      -- ref_year
+						,@ref_no_new									-- ref_no
+						,ROW_NUMBER() OVER(ORDER BY (SELECT null))	-- transaction_no
+						,'S'										-- ref_status
+						,l.national_id							-- national_id
+						,p.account_no								-- account_no
+						,l.amount									-- amount
+						,l.group_id									-- group_id
+						,IIF(l.sales_code = '', null, l.sales_code)	-- sales_code
+						,IIF(l.remark = '', null, l.remark)			-- remark
+						,'U'										-- source
+						,SYSDATETIME(), @username, SYSDATETIME(), @username
+					FROM @lists l
+					JOIN dbo.NETS_Payees p ON p.national_id = l.national_id;
+
+					COMMIT;
+
+					SELECT CONCAT(FORMAT(DATEFROMPARTS(@year, 1, 1), 'yy', 'th-TH'), '-', @ref_no_new) ref_no_mask
+						,(-5) Result;
+
+				END
+
+			END
+		
+		END
+	END
+
+END TRY
+BEGIN CATCH
+	
+	SELECT '' ref_no_mask, ISNULL(ERROR_NUMBER(), 0) Result
+
+	IF @@TRANCOUNT > 0
+		ROLLBACK;
+	
+END CATCH
+
+END
+GO
+/****** Object:  StoredProcedure [dbo].[postPayee]    Script Date: 4/27/2023 16:52:27 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1585,7 +1934,11 @@ CREATE PROCEDURE [dbo].[postPayee]
 ,@first_name varchar(100) 
 ,@last_name varchar(100) 
 ,@address_no varchar(40) 
-,@address_other varchar(40) 
+,@address_moo_no varchar(20) 
+,@address_build_name varchar(40) 
+,@address_room_no varchar(20) 
+,@address_floor_no varchar(20) 
+,@address_village_name varchar(100) 
 ,@address_soi varchar(100) 
 ,@address_street_name varchar(100) 
 ,@address_tambon varchar(50) 
@@ -1608,7 +1961,11 @@ BEGIN TRY
 		,first_name
 		,last_name
 		,address_no
+		,address_moo_no
 		,address_build_name
+		,address_room_no
+		,address_floor_no
+		,address_village_name
 		,address_soi
 		,address_street_name
 		,address_tambon
@@ -1627,7 +1984,11 @@ BEGIN TRY
 		,@first_name
 		,@last_name
 		,@address_no
-		,@address_other
+		,@address_moo_no
+		,@address_build_name
+		,@address_room_no
+		,@address_floor_no
+		,@address_village_name
 		,@address_soi
 		,@address_street_name
 		,@address_tambon
@@ -1651,24 +2012,28 @@ BEGIN CATCH
 		,first_name = @first_name
 		,last_name = @last_name
 		,address_no = @address_no
-		,address_build_name = @address_other
+		,address_moo_no = @address_moo_no
+		,address_build_name = @address_build_name
+		,address_room_no = @address_room_no
+		,address_floor_no = @address_floor_no
+		,address_village_name = @address_village_name
 		,address_soi = @address_soi
 		,address_street_name = @address_street_name
 		,address_tambon = @address_tambon
 		,address_amphur = @address_amphur
 		,address_province = @address_province
 		,address_postal_code = @address_postal_code
-		,account_no = @account_no
 		,active = @active
 		,updated_by = @UpdatedBy
 		,updated_date = SYSDATETIME()
 	WHERE national_id = @national_id;
 
+	COMMIT;
 END CATCH
 
 END
 GO
-/****** Object:  StoredProcedure [dbo].[postRole]    Script Date: 4/25/2023 14:47:02 ******/
+/****** Object:  StoredProcedure [dbo].[postRole]    Script Date: 4/27/2023 16:52:27 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1804,7 +2169,7 @@ END CATCH
 
 END
 GO
-/****** Object:  StoredProcedure [dbo].[postTaxDeduction]    Script Date: 4/25/2023 14:47:02 ******/
+/****** Object:  StoredProcedure [dbo].[postTaxDeduction]    Script Date: 4/27/2023 16:52:27 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1858,7 +2223,7 @@ END CATCH
 
 END
 GO
-/****** Object:  StoredProcedure [dbo].[postTaxTerm]    Script Date: 4/25/2023 14:47:02 ******/
+/****** Object:  StoredProcedure [dbo].[postTaxTerm]    Script Date: 4/27/2023 16:52:27 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1919,7 +2284,7 @@ END CATCH
 
 END
 GO
-/****** Object:  StoredProcedure [dbo].[postUsername]    Script Date: 4/25/2023 14:47:02 ******/
+/****** Object:  StoredProcedure [dbo].[postUsername]    Script Date: 4/27/2023 16:52:27 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1980,7 +2345,7 @@ END CATCH
 
 END
 GO
-/****** Object:  StoredProcedure [dbo].[RolePermission]    Script Date: 4/25/2023 14:47:02 ******/
+/****** Object:  StoredProcedure [dbo].[RolePermission]    Script Date: 4/27/2023 16:52:27 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1998,7 +2363,7 @@ AND users.active = 1 ;
 
 END
 GO
-/****** Object:  StoredProcedure [dbo].[searchPayees]    Script Date: 4/25/2023 14:47:02 ******/
+/****** Object:  StoredProcedure [dbo].[searchPayees]    Script Date: 4/27/2023 16:52:27 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -2018,16 +2383,21 @@ SELECT
 	,p.first_name
 	,p.last_name
 	,p.account_no
-	,p.account_no
-	,p.active
+	,p.address_village_name
 	,CONCAT(p.address_no, ' '
-			, IIF(p.address_build_name = '', '', p.address_build_name + ' ')
-			, IIF(p.address_soi = '', '', p.address_soi + ' ')
-			, IIF(p.address_street_name = '', '', p.address_street_name + ' ')
+			, IIF(ISNULL(p.address_moo_no, '') = '', '', 'หมู่ ' + p.address_moo_no + ' ')
+			, IIF(ISNULL(p.address_build_name, '') = '', '', 'อาคาร ' + p.address_build_name + ' ')
+			, IIF(ISNULL(p.address_room_no, '') = '', '', 'ห้อง ' + p.address_room_no + ' ')
+			, IIF(ISNULL(p.address_floor_no, '') = '', '', 'ชั้น ' + p.address_floor_no + ' ')
+			, IIF(ISNULL(p.address_village_name, '') = '', '', 'หมู่บ้าน ' + p.address_village_name + ' ')
+			, IIF(ISNULL(p.address_soi, '') = '', '', 'ซอย ' + p.address_soi + ' ')
+			, IIF(ISNULL(p.address_street_name, '') = '', '', 'ถนน ' + p.address_street_name + ' ')
 			,p.address_tambon, ' '
 			,p.address_amphur, ' '
 			,p.address_province, ' '
 			,p.address_postal_code) address
+	,Count(*) Over() AS total_records
+	,@page current_page
 FROM dbo.NETS_Payees p
 WHERE CONCAT(p.first_name, ' ', p.last_name) LIKE '%' + @wording + '%'
 OR p.national_id LIKE '%' + @wording + '%'
@@ -2035,6 +2405,7 @@ OR p.national_id LIKE '%' + @wording + '%'
 ORDER BY p.national_id ASC
 OFFSET @records*(@page-1) ROWS
 FETCH NEXT @records ROWS ONLY;
+
 
 END
 GO
