@@ -22,7 +22,7 @@ INSERT dbo.NETS_List_of_Values VALUES (N'RefNoStatus', N'I', 1, N'In-Process', N
 INSERT dbo.NETS_List_of_Values VALUES (N'RefNoStatus', N'P', 1, N'Paid', NULL, SYSDATETIME(), N'admin', SYSDATETIME(), N'admin');
 INSERT dbo.NETS_List_of_Values VALUES (N'RefNoStatus', N'U', 1, N'Unpaid', NULL, SYSDATETIME(), N'admin', SYSDATETIME(), N'admin');
 INSERT dbo.NETS_List_of_Values VALUES (N'RefNoStatus', N'M', 1, N'Manual-Paid', NULL, SYSDATETIME(), N'admin', SYSDATETIME(), N'admin');
-
+INSERT dbo.NETS_List_of_Values VALUES (N'IncomeUpload', N'Template', 1, N' https://bangkokbank.sharepoint.com/teams/NETS/Shared%20Documents/General/Relate%20Document/Template/NETS-Income-Upload_v.1.0_20230425.xlsx’, N' NETS-Income-Upload_v.1.0_20230425.xlsx', SYSDATETIME(), N'admin', SYSDATETIME(), N'admin');
 TRUNCATE TABLE dbo.NETS_Data_Groups;
 INSERT dbo.NETS_Data_Groups  VALUES (N'IT', N'IT', NULL, 1, N'IT', N'IT', SYSDATETIME(), N'admin', SYSDATETIME(), N'admin');
 INSERT dbo.NETS_Data_Groups  VALUES (N'BLA', N'BLA', NULL, 1, N'DirectSales', N'BLA', SYSDATETIME(), N'admin', SYSDATETIME(), N'admin');
