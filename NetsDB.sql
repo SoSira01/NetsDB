@@ -178,3 +178,32 @@ INSERT INTO dbo.NETS_Incomes VALUES (2023, N'00006', 1, N'N', N'1234567890', N'1
 TRUNCATE TABLE dbo.NETS_Payees;
 INSERT INTO [dbo].[NETS_Payees] ([national_id], [pre_name], [first_name], [last_name], [address_build_name], [address_room_no], [address_floor_no], [address_village_name], [address_no], [address_moo_no], [address_soi], [address_street_name], [address_tambon], [address_amphur], [address_province], [address_postal_code], [account_no], [active], [created_date], [created_by], [updated_date], [updated_by]) VALUES (N'123456789', N'นาง', N'ผู้ใช้งาน123', N'user 04', N'1', NULL, NULL, NULL, N'25', NULL, N'Soi', N'Street', N'Tambom', N'Amphur', N'BKK', N'10100', N'123123', 1, N'2023-03-30 13:50:54', N'admin', N'2023-03-30 13:50:54', N'admin')
 INSERT INTO [dbo].[NETS_Payees] ([national_id], [pre_name], [first_name], [last_name], [address_build_name], [address_room_no], [address_floor_no], [address_village_name], [address_no], [address_moo_no], [address_soi], [address_street_name], [address_tambon], [address_amphur], [address_province], [address_postal_code], [account_no], [active], [created_date], [created_by], [updated_date], [updated_by]) VALUES (N'1234567890', N'นาย', N'cat', N'dog', N'123', NULL, NULL, NULL, N'288', NULL, N'Soi', N'Street', N'Tambom', N'Amphur', N'BKK', N'10400', N'123', 1, N'2023-03-30 08:47:36', N'admin', N'2023-03-30 13:07:13', N'admin')
+
+INSERT INTO dbo.NETS_Payments
+           (ref_year
+           ,ref_no
+           ,transaction_no
+           ,national_id
+           ,account_no
+           ,group_id
+           ,amount
+           ,withholding_tax
+           ,amount_net
+           ,payment_status
+           ,created_date
+           ,updated_date
+           )
+SELECT ref_year
+      ,ref_no
+      ,transaction_no
+      ,national_id
+      ,account_no
+      ,group_id
+      ,amount
+      ,0
+      ,0
+      ,'P'
+      ,SYSDATETIME()
+      ,SYSDATETIME()
+FROM dbo.NETS_Incomes
+where ref_no = '00001'
