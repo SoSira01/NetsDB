@@ -1,6 +1,6 @@
 ﻿USE [master]
 GO
-/****** Object:  Database [Nets]    Script Date: 5/23/2023 4:40:51 PM ******/
+/****** Object:  Database [Nets]    Script Date: 5/25/2023 4:50:12 PM ******/
 CREATE DATABASE [Nets]
  CONTAINMENT = NONE
  ON  PRIMARY 
@@ -82,20 +82,20 @@ ALTER DATABASE [Nets] SET QUERY_STORE (OPERATION_MODE = READ_WRITE, CLEANUP_POLI
 GO
 USE [Nets]
 GO
-/****** Object:  UserDefinedTableType [dbo].[income_ref_no_type]    Script Date: 5/23/2023 4:40:51 PM ******/
+/****** Object:  UserDefinedTableType [dbo].[income_ref_no_type]    Script Date: 5/25/2023 4:50:12 PM ******/
 CREATE TYPE [dbo].[income_ref_no_type] AS TABLE(
 	[ref_year] [int] NULL,
 	[ref_no] [varchar](5) NULL
 )
 GO
-/****** Object:  UserDefinedTableType [dbo].[insertRole]    Script Date: 5/23/2023 4:40:51 PM ******/
+/****** Object:  UserDefinedTableType [dbo].[insertRole]    Script Date: 5/25/2023 4:50:12 PM ******/
 CREATE TYPE [dbo].[insertRole] AS TABLE(
 	[id] [int] NULL,
 	[rolename] [varchar](max) NULL,
 	[permission] [varchar](max) NULL
 )
 GO
-/****** Object:  UserDefinedTableType [dbo].[insertUser]    Script Date: 5/23/2023 4:40:51 PM ******/
+/****** Object:  UserDefinedTableType [dbo].[insertUser]    Script Date: 5/25/2023 4:50:12 PM ******/
 CREATE TYPE [dbo].[insertUser] AS TABLE(
 	[id] [int] NULL,
 	[fullname] [varchar](max) NULL,
@@ -103,7 +103,7 @@ CREATE TYPE [dbo].[insertUser] AS TABLE(
 	[roleid] [int] NULL
 )
 GO
-/****** Object:  UserDefinedTableType [dbo].[manual_income_upload_type]    Script Date: 5/23/2023 4:40:51 PM ******/
+/****** Object:  UserDefinedTableType [dbo].[manual_income_upload_type]    Script Date: 5/25/2023 4:50:12 PM ******/
 CREATE TYPE [dbo].[manual_income_upload_type] AS TABLE(
 	[national_id] [varchar](13) NOT NULL,
 	[group_id] [varchar](50) NOT NULL,
@@ -112,19 +112,19 @@ CREATE TYPE [dbo].[manual_income_upload_type] AS TABLE(
 	[remark] [varchar](max) NULL
 )
 GO
-/****** Object:  UserDefinedTableType [dbo].[national_id_type]    Script Date: 5/23/2023 4:40:51 PM ******/
+/****** Object:  UserDefinedTableType [dbo].[national_id_type]    Script Date: 5/25/2023 4:50:12 PM ******/
 CREATE TYPE [dbo].[national_id_type] AS TABLE(
 	[national_id] [varchar](13) NULL
 )
 GO
-/****** Object:  UserDefinedTableType [dbo].[roles_type]    Script Date: 5/23/2023 4:40:51 PM ******/
+/****** Object:  UserDefinedTableType [dbo].[roles_type]    Script Date: 5/25/2023 4:50:12 PM ******/
 CREATE TYPE [dbo].[roles_type] AS TABLE(
 	[id] [int] NOT NULL,
 	[rolename] [varchar](100) NOT NULL,
 	[permission] [varchar](max) NULL
 )
 GO
-/****** Object:  UserDefinedFunction [dbo].[getRunningIncomeRefNo]    Script Date: 5/23/2023 4:40:51 PM ******/
+/****** Object:  UserDefinedFunction [dbo].[getRunningIncomeRefNo]    Script Date: 5/25/2023 4:50:12 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -148,7 +148,7 @@ BEGIN
 END
 
 GO
-/****** Object:  Table [dbo].[NETS_Batch_Calendars]    Script Date: 5/23/2023 4:40:51 PM ******/
+/****** Object:  Table [dbo].[NETS_Batch_Calendars]    Script Date: 5/25/2023 4:50:12 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -172,7 +172,7 @@ CREATE TABLE [dbo].[NETS_Batch_Calendars](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[NETS_Data_Groups]    Script Date: 5/23/2023 4:40:51 PM ******/
+/****** Object:  Table [dbo].[NETS_Data_Groups]    Script Date: 5/25/2023 4:50:12 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -194,7 +194,7 @@ CREATE TABLE [dbo].[NETS_Data_Groups](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[NETS_Incomes]    Script Date: 5/23/2023 4:40:51 PM ******/
+/****** Object:  Table [dbo].[NETS_Incomes]    Script Date: 5/25/2023 4:50:12 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -238,7 +238,7 @@ CREATE TABLE [dbo].[NETS_Incomes](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[NETS_List_of_Values]    Script Date: 5/23/2023 4:40:51 PM ******/
+/****** Object:  Table [dbo].[NETS_List_of_Values]    Script Date: 5/25/2023 4:50:12 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -260,7 +260,7 @@ CREATE TABLE [dbo].[NETS_List_of_Values](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[NETS_Payees]    Script Date: 5/23/2023 4:40:51 PM ******/
+/****** Object:  Table [dbo].[NETS_Payees]    Script Date: 5/25/2023 4:50:12 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -294,7 +294,7 @@ CREATE TABLE [dbo].[NETS_Payees](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[NETS_Payees_Change]    Script Date: 5/23/2023 4:40:51 PM ******/
+/****** Object:  Table [dbo].[NETS_Payees_Change]    Script Date: 5/25/2023 4:50:12 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -330,7 +330,37 @@ CREATE TABLE [dbo].[NETS_Payees_Change](
 	[remark] [varchar](1000) NOT NULL
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[NETS_Payments]    Script Date: 5/23/2023 4:40:51 PM ******/
+/****** Object:  Table [dbo].[NETS_Payees_Logs]    Script Date: 5/25/2023 4:50:12 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[NETS_Payees_Logs](
+	[national_id] [varchar](13) NOT NULL,
+	[pre_name] [varchar](20) NOT NULL,
+	[first_name] [varchar](100) NOT NULL,
+	[last_name] [varchar](100) NOT NULL,
+	[address_build_name] [varchar](40) NULL,
+	[address_room_no] [varchar](20) NULL,
+	[address_floor_no] [varchar](20) NULL,
+	[address_village_name] [varchar](100) NULL,
+	[address_no] [varchar](40) NOT NULL,
+	[address_moo_no] [varchar](20) NULL,
+	[address_soi] [varchar](100) NULL,
+	[address_street_name] [varchar](100) NULL,
+	[address_tambon] [varchar](50) NOT NULL,
+	[address_amphur] [varchar](50) NOT NULL,
+	[address_province] [varchar](50) NOT NULL,
+	[address_postal_code] [varchar](5) NOT NULL,
+	[account_no] [varchar](10) NOT NULL,
+	[active] [bit] NOT NULL,
+	[created_date] [datetime] NOT NULL,
+	[created_by] [varchar](50) NOT NULL,
+	[updated_date] [datetime] NOT NULL,
+	[updated_by] [varchar](50) NOT NULL
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[NETS_Payments]    Script Date: 5/25/2023 4:50:12 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -361,7 +391,7 @@ PRIMARY KEY CLUSTERED
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[NETS_Payments_Adjustment]    Script Date: 5/23/2023 4:40:51 PM ******/
+/****** Object:  Table [dbo].[NETS_Payments_Adjustment]    Script Date: 5/25/2023 4:50:12 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -384,7 +414,7 @@ CREATE TABLE [dbo].[NETS_Payments_Adjustment](
 	[remark] [varchar](1000) NOT NULL
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[NETS_Roles]    Script Date: 5/23/2023 4:40:51 PM ******/
+/****** Object:  Table [dbo].[NETS_Roles]    Script Date: 5/25/2023 4:50:12 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -434,7 +464,7 @@ CREATE TABLE [dbo].[NETS_Roles](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[NETS_Tax_Deduction_Terms]    Script Date: 5/23/2023 4:40:51 PM ******/
+/****** Object:  Table [dbo].[NETS_Tax_Deduction_Terms]    Script Date: 5/25/2023 4:50:12 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -454,7 +484,7 @@ CREATE TABLE [dbo].[NETS_Tax_Deduction_Terms](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[NETS_Tax_Terms]    Script Date: 5/23/2023 4:40:51 PM ******/
+/****** Object:  Table [dbo].[NETS_Tax_Terms]    Script Date: 5/25/2023 4:50:12 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -475,7 +505,7 @@ CREATE TABLE [dbo].[NETS_Tax_Terms](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[NETS_User_Profiles]    Script Date: 5/23/2023 4:40:51 PM ******/
+/****** Object:  Table [dbo].[NETS_User_Profiles]    Script Date: 5/25/2023 4:50:12 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -497,7 +527,7 @@ CREATE TABLE [dbo].[NETS_User_Profiles](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[NETS_User_Profiles_Info]    Script Date: 5/23/2023 4:40:51 PM ******/
+/****** Object:  Table [dbo].[NETS_User_Profiles_Info]    Script Date: 5/25/2023 4:50:12 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -642,19 +672,37 @@ INSERT [dbo].[NETS_Data_Groups] ([group_id], [group_title], [parent_group_id], [
 GO
 INSERT [dbo].[NETS_Data_Groups] ([group_id], [group_title], [parent_group_id], [active], [team_id], [product_id], [created_date], [created_by], [updated_date], [updated_by]) VALUES (N'IT', N'IT', NULL, 1, N'IT', N'IT', CAST(N'2023-05-12T10:38:41.043' AS DateTime), N'admin', CAST(N'2023-05-12T10:38:41.043' AS DateTime), N'admin')
 GO
-INSERT [dbo].[NETS_Incomes] ([ref_year], [ref_no], [transaction_no], [ref_status], [national_id], [account_no], [amount], [group_id], [sales_code], [remark], [source], [created_date], [created_by], [updated_date], [updated_by], [submitted_date], [approved_date], [approved_by], [rejected_date], [rejected_by], [rejected_reason], [paid_date], [manual_paid_date], [manual_paid_by], [manual_paid_description], [confirm_paid_date], [confirm_paid_by], [cancelled_date], [cancelled_reason], [batch_run_date]) VALUES (2023, N'00001', 1, N'S', N'1234567890', N'123', CAST(25.00 AS Decimal(17, 2)), N'IT', NULL, NULL, N'M', CAST(N'2023-04-11T15:20:57.000' AS DateTime), N'admin', CAST(N'2023-04-19T08:46:34.000' AS DateTime), N'admin', CAST(N'2023-04-19T08:46:34.000' AS DateTime), CAST(N'2023-04-11T15:20:57.000' AS DateTime), NULL, CAST(N'2023-04-11T15:20:57.000' AS DateTime), NULL, NULL, CAST(N'2023-04-11T15:20:57.000' AS DateTime), CAST(N'2023-04-11T15:20:57.000' AS DateTime), NULL, NULL, CAST(N'2023-04-11T15:20:57.000' AS DateTime), NULL, CAST(N'2023-04-11T15:20:57.000' AS DateTime), NULL, CAST(N'2023-04-11T15:20:57.000' AS DateTime))
+INSERT [dbo].[NETS_Incomes] ([ref_year], [ref_no], [transaction_no], [ref_status], [national_id], [account_no], [amount], [group_id], [sales_code], [remark], [source], [created_date], [created_by], [updated_date], [updated_by], [submitted_date], [approved_date], [approved_by], [rejected_date], [rejected_by], [rejected_reason], [paid_date], [manual_paid_date], [manual_paid_by], [manual_paid_description], [confirm_paid_date], [confirm_paid_by], [cancelled_date], [cancelled_reason], [batch_run_date]) VALUES (2023, N'00001', 1, N'S', N'1234567890123', N'123', CAST(25.00 AS Decimal(17, 2)), N'IT', NULL, NULL, N'M', CAST(N'2023-04-11T15:20:57.000' AS DateTime), N'admin', CAST(N'2023-04-19T08:46:34.000' AS DateTime), N'admin', CAST(N'2023-04-19T08:46:34.000' AS DateTime), CAST(N'2023-04-11T15:20:57.000' AS DateTime), NULL, CAST(N'2023-04-11T15:20:57.000' AS DateTime), NULL, NULL, CAST(N'2023-04-11T15:20:57.000' AS DateTime), CAST(N'2023-04-11T15:20:57.000' AS DateTime), NULL, NULL, CAST(N'2023-04-11T15:20:57.000' AS DateTime), NULL, CAST(N'2023-04-11T15:20:57.000' AS DateTime), NULL, CAST(N'2023-04-11T15:20:57.000' AS DateTime))
 GO
-INSERT [dbo].[NETS_Incomes] ([ref_year], [ref_no], [transaction_no], [ref_status], [national_id], [account_no], [amount], [group_id], [sales_code], [remark], [source], [created_date], [created_by], [updated_date], [updated_by], [submitted_date], [approved_date], [approved_by], [rejected_date], [rejected_by], [rejected_reason], [paid_date], [manual_paid_date], [manual_paid_by], [manual_paid_description], [confirm_paid_date], [confirm_paid_by], [cancelled_date], [cancelled_reason], [batch_run_date]) VALUES (2023, N'00002', 1, N'C', N'1234567890', N'123', CAST(0.00 AS Decimal(17, 2)), N'IT', NULL, NULL, N'M', CAST(N'2023-04-18T09:44:51.000' AS DateTime), N'admin', CAST(N'2023-04-19T15:31:06.000' AS DateTime), N'admin', CAST(N'2023-04-19T15:17:18.000' AS DateTime), CAST(N'2023-04-18T09:44:51.000' AS DateTime), NULL, CAST(N'2023-04-18T09:44:51.000' AS DateTime), NULL, NULL, CAST(N'2023-04-18T09:44:51.000' AS DateTime), CAST(N'2023-04-18T09:44:51.000' AS DateTime), NULL, NULL, CAST(N'2023-04-18T09:44:51.000' AS DateTime), NULL, CAST(N'2023-04-19T15:31:06.000' AS DateTime), N'cancel', CAST(N'2023-04-18T09:44:51.000' AS DateTime))
+INSERT [dbo].[NETS_Incomes] ([ref_year], [ref_no], [transaction_no], [ref_status], [national_id], [account_no], [amount], [group_id], [sales_code], [remark], [source], [created_date], [created_by], [updated_date], [updated_by], [submitted_date], [approved_date], [approved_by], [rejected_date], [rejected_by], [rejected_reason], [paid_date], [manual_paid_date], [manual_paid_by], [manual_paid_description], [confirm_paid_date], [confirm_paid_by], [cancelled_date], [cancelled_reason], [batch_run_date]) VALUES (2023, N'00002', 1, N'C', N'1234567890123', N'123', CAST(0.00 AS Decimal(17, 2)), N'IT', NULL, NULL, N'M', CAST(N'2023-04-18T09:44:51.000' AS DateTime), N'admin', CAST(N'2023-04-19T15:31:06.000' AS DateTime), N'admin', CAST(N'2023-04-19T15:17:18.000' AS DateTime), CAST(N'2023-04-18T09:44:51.000' AS DateTime), NULL, CAST(N'2023-04-18T09:44:51.000' AS DateTime), NULL, NULL, CAST(N'2023-04-18T09:44:51.000' AS DateTime), CAST(N'2023-04-18T09:44:51.000' AS DateTime), NULL, NULL, CAST(N'2023-04-18T09:44:51.000' AS DateTime), NULL, CAST(N'2023-04-19T15:31:06.000' AS DateTime), N'cancel', CAST(N'2023-04-18T09:44:51.000' AS DateTime))
 GO
-INSERT [dbo].[NETS_Incomes] ([ref_year], [ref_no], [transaction_no], [ref_status], [national_id], [account_no], [amount], [group_id], [sales_code], [remark], [source], [created_date], [created_by], [updated_date], [updated_by], [submitted_date], [approved_date], [approved_by], [rejected_date], [rejected_by], [rejected_reason], [paid_date], [manual_paid_date], [manual_paid_by], [manual_paid_description], [confirm_paid_date], [confirm_paid_by], [cancelled_date], [cancelled_reason], [batch_run_date]) VALUES (2023, N'00003', 1, N'S', N'123456789', N'123123', CAST(50.00 AS Decimal(17, 2)), N'IT', NULL, NULL, N'M', CAST(N'2023-04-18T10:06:10.000' AS DateTime), N'admin', CAST(N'2023-04-18T10:06:10.000' AS DateTime), N'admin', CAST(N'2023-04-18T10:06:10.000' AS DateTime), CAST(N'2023-04-18T10:06:10.000' AS DateTime), NULL, CAST(N'2023-04-18T10:06:10.000' AS DateTime), NULL, NULL, CAST(N'2023-04-18T10:06:10.000' AS DateTime), CAST(N'2023-04-18T10:06:10.000' AS DateTime), NULL, NULL, CAST(N'2023-04-18T10:06:10.000' AS DateTime), NULL, CAST(N'2023-04-18T10:06:10.000' AS DateTime), NULL, CAST(N'2023-04-18T10:06:10.000' AS DateTime))
+INSERT [dbo].[NETS_Incomes] ([ref_year], [ref_no], [transaction_no], [ref_status], [national_id], [account_no], [amount], [group_id], [sales_code], [remark], [source], [created_date], [created_by], [updated_date], [updated_by], [submitted_date], [approved_date], [approved_by], [rejected_date], [rejected_by], [rejected_reason], [paid_date], [manual_paid_date], [manual_paid_by], [manual_paid_description], [confirm_paid_date], [confirm_paid_by], [cancelled_date], [cancelled_reason], [batch_run_date]) VALUES (2023, N'00003', 1, N'S', N'1234567890134', N'123123', CAST(50.00 AS Decimal(17, 2)), N'IT', NULL, NULL, N'M', CAST(N'2023-04-18T10:06:10.000' AS DateTime), N'admin', CAST(N'2023-04-18T10:06:10.000' AS DateTime), N'admin', CAST(N'2023-04-18T10:06:10.000' AS DateTime), CAST(N'2023-04-18T10:06:10.000' AS DateTime), NULL, CAST(N'2023-04-18T10:06:10.000' AS DateTime), NULL, NULL, CAST(N'2023-04-18T10:06:10.000' AS DateTime), CAST(N'2023-04-18T10:06:10.000' AS DateTime), NULL, NULL, CAST(N'2023-04-18T10:06:10.000' AS DateTime), NULL, CAST(N'2023-04-18T10:06:10.000' AS DateTime), NULL, CAST(N'2023-04-18T10:06:10.000' AS DateTime))
 GO
-INSERT [dbo].[NETS_Incomes] ([ref_year], [ref_no], [transaction_no], [ref_status], [national_id], [account_no], [amount], [group_id], [sales_code], [remark], [source], [created_date], [created_by], [updated_date], [updated_by], [submitted_date], [approved_date], [approved_by], [rejected_date], [rejected_by], [rejected_reason], [paid_date], [manual_paid_date], [manual_paid_by], [manual_paid_description], [confirm_paid_date], [confirm_paid_by], [cancelled_date], [cancelled_reason], [batch_run_date]) VALUES (2023, N'00004', 1, N'N', N'123456789', N'123123', CAST(120.00 AS Decimal(17, 2)), N'IT', NULL, NULL, N'M', CAST(N'2023-04-18T10:07:54.000' AS DateTime), N'admin', CAST(N'2023-04-25T13:21:49.000' AS DateTime), N'admin', CAST(N'2023-04-19T15:14:46.000' AS DateTime), CAST(N'2023-04-18T10:07:54.000' AS DateTime), NULL, CAST(N'2023-04-18T10:07:54.000' AS DateTime), NULL, NULL, CAST(N'2023-04-18T10:07:54.000' AS DateTime), CAST(N'2023-04-18T10:07:54.000' AS DateTime), NULL, NULL, CAST(N'2023-04-18T10:07:54.000' AS DateTime), NULL, CAST(N'2023-04-18T10:07:54.000' AS DateTime), NULL, CAST(N'2023-04-18T10:07:54.000' AS DateTime))
+INSERT [dbo].[NETS_Incomes] ([ref_year], [ref_no], [transaction_no], [ref_status], [national_id], [account_no], [amount], [group_id], [sales_code], [remark], [source], [created_date], [created_by], [updated_date], [updated_by], [submitted_date], [approved_date], [approved_by], [rejected_date], [rejected_by], [rejected_reason], [paid_date], [manual_paid_date], [manual_paid_by], [manual_paid_description], [confirm_paid_date], [confirm_paid_by], [cancelled_date], [cancelled_reason], [batch_run_date]) VALUES (2023, N'00004', 1, N'N', N'1234567890134', N'123123', CAST(120.00 AS Decimal(17, 2)), N'IT', NULL, NULL, N'M', CAST(N'2023-04-18T10:07:54.000' AS DateTime), N'admin', CAST(N'2023-04-25T13:21:49.000' AS DateTime), N'admin', CAST(N'2023-04-19T15:14:46.000' AS DateTime), CAST(N'2023-04-18T10:07:54.000' AS DateTime), NULL, CAST(N'2023-04-18T10:07:54.000' AS DateTime), NULL, NULL, CAST(N'2023-04-18T10:07:54.000' AS DateTime), CAST(N'2023-04-18T10:07:54.000' AS DateTime), NULL, NULL, CAST(N'2023-04-18T10:07:54.000' AS DateTime), NULL, CAST(N'2023-04-18T10:07:54.000' AS DateTime), NULL, CAST(N'2023-04-18T10:07:54.000' AS DateTime))
 GO
-INSERT [dbo].[NETS_Incomes] ([ref_year], [ref_no], [transaction_no], [ref_status], [national_id], [account_no], [amount], [group_id], [sales_code], [remark], [source], [created_date], [created_by], [updated_date], [updated_by], [submitted_date], [approved_date], [approved_by], [rejected_date], [rejected_by], [rejected_reason], [paid_date], [manual_paid_date], [manual_paid_by], [manual_paid_description], [confirm_paid_date], [confirm_paid_by], [cancelled_date], [cancelled_reason], [batch_run_date]) VALUES (2023, N'00005', 1, N'N', N'1234567890', N'123', CAST(3.00 AS Decimal(17, 2)), N'IT', NULL, NULL, N'M', CAST(N'2023-04-25T14:31:30.000' AS DateTime), N'admin', CAST(N'2023-04-25T14:31:30.000' AS DateTime), N'admin', CAST(N'2023-04-25T14:31:30.000' AS DateTime), CAST(N'2023-04-25T14:31:30.000' AS DateTime), NULL, CAST(N'2023-04-25T14:31:30.000' AS DateTime), NULL, NULL, CAST(N'2023-04-25T14:31:30.000' AS DateTime), CAST(N'2023-04-25T14:31:30.000' AS DateTime), NULL, NULL, CAST(N'2023-04-25T14:31:30.000' AS DateTime), NULL, CAST(N'2023-04-25T14:31:30.000' AS DateTime), NULL, CAST(N'2023-04-25T14:31:30.000' AS DateTime))
+INSERT [dbo].[NETS_Incomes] ([ref_year], [ref_no], [transaction_no], [ref_status], [national_id], [account_no], [amount], [group_id], [sales_code], [remark], [source], [created_date], [created_by], [updated_date], [updated_by], [submitted_date], [approved_date], [approved_by], [rejected_date], [rejected_by], [rejected_reason], [paid_date], [manual_paid_date], [manual_paid_by], [manual_paid_description], [confirm_paid_date], [confirm_paid_by], [cancelled_date], [cancelled_reason], [batch_run_date]) VALUES (2023, N'00005', 1, N'N', N'1234567890123', N'123', CAST(3.00 AS Decimal(17, 2)), N'IT', NULL, NULL, N'M', CAST(N'2023-04-25T14:31:30.000' AS DateTime), N'admin', CAST(N'2023-04-25T14:31:30.000' AS DateTime), N'admin', CAST(N'2023-04-25T14:31:30.000' AS DateTime), CAST(N'2023-04-25T14:31:30.000' AS DateTime), NULL, CAST(N'2023-04-25T14:31:30.000' AS DateTime), NULL, NULL, CAST(N'2023-04-25T14:31:30.000' AS DateTime), CAST(N'2023-04-25T14:31:30.000' AS DateTime), NULL, NULL, CAST(N'2023-04-25T14:31:30.000' AS DateTime), NULL, CAST(N'2023-04-25T14:31:30.000' AS DateTime), NULL, CAST(N'2023-04-25T14:31:30.000' AS DateTime))
 GO
-INSERT [dbo].[NETS_Incomes] ([ref_year], [ref_no], [transaction_no], [ref_status], [national_id], [account_no], [amount], [group_id], [sales_code], [remark], [source], [created_date], [created_by], [updated_date], [updated_by], [submitted_date], [approved_date], [approved_by], [rejected_date], [rejected_by], [rejected_reason], [paid_date], [manual_paid_date], [manual_paid_by], [manual_paid_description], [confirm_paid_date], [confirm_paid_by], [cancelled_date], [cancelled_reason], [batch_run_date]) VALUES (2023, N'00006', 1, N'N', N'1234567890', N'123', CAST(999.00 AS Decimal(17, 2)), N'IT', NULL, NULL, N'M', CAST(N'2023-04-25T14:32:23.000' AS DateTime), N'admin', CAST(N'2023-04-25T14:32:23.000' AS DateTime), N'admin', CAST(N'2023-04-25T14:32:23.000' AS DateTime), CAST(N'2023-04-25T14:32:23.000' AS DateTime), NULL, CAST(N'2023-04-25T14:32:23.000' AS DateTime), NULL, NULL, CAST(N'2023-04-25T14:32:23.000' AS DateTime), CAST(N'2023-04-25T14:32:23.000' AS DateTime), NULL, NULL, CAST(N'2023-04-25T14:32:23.000' AS DateTime), NULL, CAST(N'2023-04-25T14:32:23.000' AS DateTime), NULL, CAST(N'2023-04-25T14:32:23.000' AS DateTime))
+INSERT [dbo].[NETS_Incomes] ([ref_year], [ref_no], [transaction_no], [ref_status], [national_id], [account_no], [amount], [group_id], [sales_code], [remark], [source], [created_date], [created_by], [updated_date], [updated_by], [submitted_date], [approved_date], [approved_by], [rejected_date], [rejected_by], [rejected_reason], [paid_date], [manual_paid_date], [manual_paid_by], [manual_paid_description], [confirm_paid_date], [confirm_paid_by], [cancelled_date], [cancelled_reason], [batch_run_date]) VALUES (2023, N'00006', 1, N'N', N'1234567890134', N'123', CAST(999.00 AS Decimal(17, 2)), N'IT', NULL, NULL, N'M', CAST(N'2023-04-25T14:32:23.000' AS DateTime), N'admin', CAST(N'2023-04-25T14:32:23.000' AS DateTime), N'admin', CAST(N'2023-04-25T14:32:23.000' AS DateTime), CAST(N'2023-04-25T14:32:23.000' AS DateTime), NULL, CAST(N'2023-04-25T14:32:23.000' AS DateTime), NULL, NULL, CAST(N'2023-04-25T14:32:23.000' AS DateTime), CAST(N'2023-04-25T14:32:23.000' AS DateTime), NULL, NULL, CAST(N'2023-04-25T14:32:23.000' AS DateTime), NULL, CAST(N'2023-04-25T14:32:23.000' AS DateTime), NULL, CAST(N'2023-04-25T14:32:23.000' AS DateTime))
+GO
+INSERT [dbo].[NETS_Incomes] ([ref_year], [ref_no], [transaction_no], [ref_status], [national_id], [account_no], [amount], [group_id], [sales_code], [remark], [source], [created_date], [created_by], [updated_date], [updated_by], [submitted_date], [approved_date], [approved_by], [rejected_date], [rejected_by], [rejected_reason], [paid_date], [manual_paid_date], [manual_paid_by], [manual_paid_description], [confirm_paid_date], [confirm_paid_by], [cancelled_date], [cancelled_reason], [batch_run_date]) VALUES (2023, N'00007', 1, N'S', N'1234567890134', N'123', CAST(5555.00 AS Decimal(17, 2)), N'IT', N'55555', NULL, N'M', CAST(N'2023-05-25T09:43:50.657' AS DateTime), N'admin', CAST(N'2023-05-25T09:43:53.050' AS DateTime), N'admin', CAST(N'2023-05-25T09:43:53.050' AS DateTime), CAST(N'2023-05-25T09:43:50.657' AS DateTime), NULL, CAST(N'2023-05-25T09:43:50.657' AS DateTime), NULL, NULL, CAST(N'2023-05-25T09:43:50.657' AS DateTime), CAST(N'2023-05-25T09:43:50.657' AS DateTime), NULL, NULL, CAST(N'2023-05-25T09:43:50.657' AS DateTime), NULL, CAST(N'2023-05-25T09:43:50.657' AS DateTime), NULL, CAST(N'2023-05-25T09:43:50.657' AS DateTime))
+GO
+INSERT [dbo].[NETS_Incomes] ([ref_year], [ref_no], [transaction_no], [ref_status], [national_id], [account_no], [amount], [group_id], [sales_code], [remark], [source], [created_date], [created_by], [updated_date], [updated_by], [submitted_date], [approved_date], [approved_by], [rejected_date], [rejected_by], [rejected_reason], [paid_date], [manual_paid_date], [manual_paid_by], [manual_paid_description], [confirm_paid_date], [confirm_paid_by], [cancelled_date], [cancelled_reason], [batch_run_date]) VALUES (2023, N'00008', 1, N'N', N'1234567890123', N'123123', CAST(0.00 AS Decimal(17, 2)), N'', NULL, NULL, N'M', CAST(N'2023-05-25T09:52:34.057' AS DateTime), N'admin', CAST(N'2023-05-25T09:52:34.057' AS DateTime), N'admin', CAST(N'2023-05-25T09:52:34.053' AS DateTime), CAST(N'2023-05-25T09:52:34.053' AS DateTime), NULL, CAST(N'2023-05-25T09:52:34.053' AS DateTime), NULL, NULL, CAST(N'2023-05-25T09:52:34.053' AS DateTime), CAST(N'2023-05-25T09:52:34.053' AS DateTime), NULL, NULL, CAST(N'2023-05-25T09:52:34.053' AS DateTime), NULL, CAST(N'2023-05-25T09:52:34.053' AS DateTime), NULL, CAST(N'2023-05-25T09:52:34.053' AS DateTime))
+GO
+INSERT [dbo].[NETS_Incomes] ([ref_year], [ref_no], [transaction_no], [ref_status], [national_id], [account_no], [amount], [group_id], [sales_code], [remark], [source], [created_date], [created_by], [updated_date], [updated_by], [submitted_date], [approved_date], [approved_by], [rejected_date], [rejected_by], [rejected_reason], [paid_date], [manual_paid_date], [manual_paid_by], [manual_paid_description], [confirm_paid_date], [confirm_paid_by], [cancelled_date], [cancelled_reason], [batch_run_date]) VALUES (2023, N'00009', 1, N'N', N'1234567890123', N'123123', CAST(0.00 AS Decimal(17, 2)), N'', NULL, NULL, N'M', CAST(N'2023-05-25T09:52:34.070' AS DateTime), N'admin', CAST(N'2023-05-25T09:52:34.070' AS DateTime), N'admin', CAST(N'2023-05-25T09:52:34.067' AS DateTime), CAST(N'2023-05-25T09:52:34.067' AS DateTime), NULL, CAST(N'2023-05-25T09:52:34.067' AS DateTime), NULL, NULL, CAST(N'2023-05-25T09:52:34.067' AS DateTime), CAST(N'2023-05-25T09:52:34.067' AS DateTime), NULL, NULL, CAST(N'2023-05-25T09:52:34.067' AS DateTime), NULL, CAST(N'2023-05-25T09:52:34.067' AS DateTime), NULL, CAST(N'2023-05-25T09:52:34.067' AS DateTime))
+GO
+INSERT [dbo].[NETS_List_of_Values] ([lov_field], [lov_code], [lov_active], [lov_description], [lov_condition], [created_date], [created_by], [updated_date], [updated_by]) VALUES (N'AdjustStatus', N'A', 1, N'Approved', NULL, CAST(N'2023-05-25T10:22:36.870' AS DateTime), N'admin', CAST(N'2023-05-25T10:22:36.870' AS DateTime), N'admin')
+GO
+INSERT [dbo].[NETS_List_of_Values] ([lov_field], [lov_code], [lov_active], [lov_description], [lov_condition], [created_date], [created_by], [updated_date], [updated_by]) VALUES (N'AdjustStatus', N'R', 1, N'Rejected', NULL, CAST(N'2023-05-25T10:22:36.873' AS DateTime), N'admin', CAST(N'2023-05-25T10:22:36.873' AS DateTime), N'admin')
+GO
+INSERT [dbo].[NETS_List_of_Values] ([lov_field], [lov_code], [lov_active], [lov_description], [lov_condition], [created_date], [created_by], [updated_date], [updated_by]) VALUES (N'AdjustStatus', N'W', 1, N'Waiting', NULL, CAST(N'2023-05-25T10:22:36.870' AS DateTime), N'admin', CAST(N'2023-05-25T10:22:36.870' AS DateTime), N'admin')
 GO
 INSERT [dbo].[NETS_List_of_Values] ([lov_field], [lov_code], [lov_active], [lov_description], [lov_condition], [created_date], [created_by], [updated_date], [updated_by]) VALUES (N'IncomeUpload', N'Template', 1, N' https://bangkokbank.sharepoint.com/teams/NETS/Shared%20Documents/General/Relate%20Document/Template/NETS-Income-Upload_v.1.0_20230425.xlsx', N' NETS-Income-Upload_v.1.0_20230425.xlsx', CAST(N'2023-05-12T10:38:41.043' AS DateTime), N'admin', CAST(N'2023-05-12T10:38:41.043' AS DateTime), N'admin')
+GO
+INSERT [dbo].[NETS_List_of_Values] ([lov_field], [lov_code], [lov_active], [lov_description], [lov_condition], [created_date], [created_by], [updated_date], [updated_by]) VALUES (N'PaymentStatus', N'P', 1, N'Paid', NULL, CAST(N'2023-05-25T10:22:36.870' AS DateTime), N'admin', CAST(N'2023-05-25T10:22:36.870' AS DateTime), N'admin')
+GO
+INSERT [dbo].[NETS_List_of_Values] ([lov_field], [lov_code], [lov_active], [lov_description], [lov_condition], [created_date], [created_by], [updated_date], [updated_by]) VALUES (N'PaymentStatus', N'U', 1, N'Unpaid', NULL, CAST(N'2023-05-25T10:22:36.870' AS DateTime), N'admin', CAST(N'2023-05-25T10:22:36.870' AS DateTime), N'admin')
+GO
+INSERT [dbo].[NETS_List_of_Values] ([lov_field], [lov_code], [lov_active], [lov_description], [lov_condition], [created_date], [created_by], [updated_date], [updated_by]) VALUES (N'PaymentStatus', N'W', 1, N'Waiting Paid', NULL, CAST(N'2023-05-25T10:22:36.860' AS DateTime), N'admin', CAST(N'2023-05-25T10:22:36.860' AS DateTime), N'admin')
 GO
 INSERT [dbo].[NETS_List_of_Values] ([lov_field], [lov_code], [lov_active], [lov_description], [lov_condition], [created_date], [created_by], [updated_date], [updated_by]) VALUES (N'PreName', N'นาง', 1, N'นาง', NULL, CAST(N'2023-05-12T10:38:41.040' AS DateTime), N'admin', CAST(N'2023-05-12T10:38:41.040' AS DateTime), N'admin')
 GO
@@ -704,25 +752,39 @@ INSERT [dbo].[NETS_List_of_Values] ([lov_field], [lov_code], [lov_active], [lov_
 GO
 INSERT [dbo].[NETS_List_of_Values] ([lov_field], [lov_code], [lov_active], [lov_description], [lov_condition], [created_date], [created_by], [updated_date], [updated_by]) VALUES (N'Team', N'Tax', 1, N'Tax', NULL, CAST(N'2023-05-12T10:38:41.040' AS DateTime), N'admin', CAST(N'2023-05-12T10:38:41.040' AS DateTime), N'admin')
 GO
-INSERT [dbo].[NETS_Payees] ([national_id], [pre_name], [first_name], [last_name], [address_build_name], [address_room_no], [address_floor_no], [address_village_name], [address_no], [address_moo_no], [address_soi], [address_street_name], [address_tambon], [address_amphur], [address_province], [address_postal_code], [account_no], [active], [created_date], [created_by], [updated_date], [updated_by]) VALUES (N'123456789', N'นาง', N'ผู้ใช้งาน123', N'user 04', N'1', N'1', N'1', N'1', N'25', N'1', N'1', N'1', N'1', N'1', N'1', N'10400', N'123123', 1, CAST(N'2023-03-30T13:50:54.000' AS DateTime), N'admin', CAST(N'2023-12-12T00:00:00.000' AS DateTime), N'admin')
+INSERT [dbo].[NETS_Payees] ([national_id], [pre_name], [first_name], [last_name], [address_build_name], [address_room_no], [address_floor_no], [address_village_name], [address_no], [address_moo_no], [address_soi], [address_street_name], [address_tambon], [address_amphur], [address_province], [address_postal_code], [account_no], [active], [created_date], [created_by], [updated_date], [updated_by]) VALUES (N'1234567890123', N'นาง', N'ผู้ใช้งาน123', N'user 04', N'1', N'1', N'1', N'1', N'25', N'1', N'1', N'1', N'1', N'1', N'1', N'10000', N'123123', 1, CAST(N'2023-03-30T13:50:54.000' AS DateTime), N'admin', CAST(N'2023-05-25T13:45:54.413' AS DateTime), N'admin')
 GO
-INSERT [dbo].[NETS_Payees] ([national_id], [pre_name], [first_name], [last_name], [address_build_name], [address_room_no], [address_floor_no], [address_village_name], [address_no], [address_moo_no], [address_soi], [address_street_name], [address_tambon], [address_amphur], [address_province], [address_postal_code], [account_no], [active], [created_date], [created_by], [updated_date], [updated_by]) VALUES (N'1234567890', N'นาง', N'cat', N'dog', N'1', N'1', N'1', N'1', N'25', N'1', N'1', N'1', N'1', N'1', N'1', N'1000', N'123', 1, CAST(N'2023-03-30T08:47:36.000' AS DateTime), N'admin', CAST(N'2023-12-12T00:00:00.000' AS DateTime), N'admin')
+INSERT [dbo].[NETS_Payees] ([national_id], [pre_name], [first_name], [last_name], [address_build_name], [address_room_no], [address_floor_no], [address_village_name], [address_no], [address_moo_no], [address_soi], [address_street_name], [address_tambon], [address_amphur], [address_province], [address_postal_code], [account_no], [active], [created_date], [created_by], [updated_date], [updated_by]) VALUES (N'1234567890134', N'นาง', N'cat', N'dog', N'1', N'1', N'1', N'1', N'25', N'1', N'1', N'1', N'1', N'1', N'1', N'10400', N'123', 1, CAST(N'2023-03-30T08:47:36.000' AS DateTime), N'admin', CAST(N'2023-05-25T08:47:55.490' AS DateTime), N'admin')
 GO
-INSERT [dbo].[NETS_Payees_Change] ([action], [national_id], [changed_date], [changed_by], [status], [approved_date], [approved_by], [rejected_date], [rejected_by], [rejected_reason], [pre_name], [first_name], [last_name], [address_build_name], [address_room_no], [address_floor_no], [address_village_name], [address_no], [address_moo_no], [address_soi], [address_street_name], [address_tambon], [address_amphur], [address_province], [address_postal_code], [account_no], [active], [remark]) VALUES (N'New', N'123456789', CAST(N'2023-12-12T00:00:00.000' AS DateTime), N'admin', N'W', CAST(N'2023-05-23T15:21:49.633' AS DateTime), N'admin', CAST(N'2023-05-23T15:21:27.403' AS DateTime), N'admin', N'', N'นาง', N'ผู้ใช้งาน123', N'user 04', N'1', N'1', N'1', N'1', N'25', N'1', N'1', N'1', N'1', N'1', N'1', N'10400', N'123123', 1, N'1')
+INSERT [dbo].[NETS_Payees_Change] ([action], [national_id], [changed_date], [changed_by], [status], [approved_date], [approved_by], [rejected_date], [rejected_by], [rejected_reason], [pre_name], [first_name], [last_name], [address_build_name], [address_room_no], [address_floor_no], [address_village_name], [address_no], [address_moo_no], [address_soi], [address_street_name], [address_tambon], [address_amphur], [address_province], [address_postal_code], [account_no], [active], [remark]) VALUES (N'Update', N'1234567890134', CAST(N'2023-05-25T08:47:55.490' AS DateTime), N'admin', N'A', CAST(N'2023-05-25T08:48:10.323' AS DateTime), N'admin', NULL, NULL, NULL, N'นาง', N'cat', N'dog', N'1', N'1', N'1', N'1', N'25', N'1', N'1', N'1', N'1', N'1', N'1', N'10400', N'123', 1, N'new postcode')
 GO
-INSERT [dbo].[NETS_Payees_Change] ([action], [national_id], [changed_date], [changed_by], [status], [approved_date], [approved_by], [rejected_date], [rejected_by], [rejected_reason], [pre_name], [first_name], [last_name], [address_build_name], [address_room_no], [address_floor_no], [address_village_name], [address_no], [address_moo_no], [address_soi], [address_street_name], [address_tambon], [address_amphur], [address_province], [address_postal_code], [account_no], [active], [remark]) VALUES (N'Update', N'1234567890', CAST(N'2023-12-12T00:00:00.000' AS DateTime), N'admin', N'W', NULL, NULL, CAST(N'2023-05-23T15:21:27.403' AS DateTime), N'admin', N'', N'นาง', N'cat', N'dog', N'1', N'1', N'1', N'1', N'25', N'1', N'1', N'1', N'1', N'1', N'1', N'1000', N'123', 1, N'1')
+INSERT [dbo].[NETS_Payees_Change] ([action], [national_id], [changed_date], [changed_by], [status], [approved_date], [approved_by], [rejected_date], [rejected_by], [rejected_reason], [pre_name], [first_name], [last_name], [address_build_name], [address_room_no], [address_floor_no], [address_village_name], [address_no], [address_moo_no], [address_soi], [address_street_name], [address_tambon], [address_amphur], [address_province], [address_postal_code], [account_no], [active], [remark]) VALUES (N'Update', N'1234567890123', CAST(N'2023-05-25T13:45:54.413' AS DateTime), N'admin', N'A', CAST(N'2023-05-25T13:46:01.123' AS DateTime), N'admin', NULL, NULL, NULL, N'นาง', N'ผู้ใช้งาน123', N'user 04', N'1', N'1', N'1', N'1', N'25', N'1', N'1', N'1', N'1', N'1', N'1', N'10000', N'123123', 1, N'123456')
 GO
-INSERT [dbo].[NETS_Payments] ([ref_year], [ref_no], [transaction_no], [national_id], [account_no], [group_id], [amount], [withholding_tax], [amount_net], [payment_status], [batch_run_date], [batch_paid_date], [created_date], [updated_date], [description], [adjusted_by], [adjusted_date]) VALUES (2023, N'00001', 1, N'1234567890', N'123', N'IT', CAST(25.00 AS Decimal(17, 2)), CAST(0.00 AS Decimal(17, 2)), CAST(0.00 AS Decimal(17, 2)), N'P', CAST(N'2023-05-17' AS Date), CAST(N'2023-05-17' AS Date), CAST(N'2023-05-17T10:43:06.503' AS DateTime), CAST(N'2023-05-17T10:43:06.503' AS DateTime), NULL, NULL, NULL)
+INSERT [dbo].[NETS_Payees_Change] ([action], [national_id], [changed_date], [changed_by], [status], [approved_date], [approved_by], [rejected_date], [rejected_by], [rejected_reason], [pre_name], [first_name], [last_name], [address_build_name], [address_room_no], [address_floor_no], [address_village_name], [address_no], [address_moo_no], [address_soi], [address_street_name], [address_tambon], [address_amphur], [address_province], [address_postal_code], [account_no], [active], [remark]) VALUES (N'Update', N'1234567890134', CAST(N'2023-05-24T14:07:50.010' AS DateTime), N'admin', N'A', NULL, NULL, NULL, NULL, NULL, N'นาง', N'cat', N'dog', N'1', N'1', N'1', N'1', N'25', N'1', N'1', N'1', N'1', N'1', N'1', N'1000', N'123', 1, N'')
 GO
-INSERT [dbo].[NETS_Payments] ([ref_year], [ref_no], [transaction_no], [national_id], [account_no], [group_id], [amount], [withholding_tax], [amount_net], [payment_status], [batch_run_date], [batch_paid_date], [created_date], [updated_date], [description], [adjusted_by], [adjusted_date]) VALUES (2023, N'00002', 1, N'1234567890', N'123', N'IT', CAST(0.00 AS Decimal(17, 2)), CAST(0.00 AS Decimal(17, 2)), CAST(0.00 AS Decimal(17, 2)), N'P', CAST(N'2023-05-17' AS Date), CAST(N'2023-05-17' AS Date), CAST(N'2023-05-17T10:43:14.057' AS DateTime), CAST(N'2023-05-17T10:43:14.057' AS DateTime), NULL, NULL, NULL)
+INSERT [dbo].[NETS_Payees_Change] ([action], [national_id], [changed_date], [changed_by], [status], [approved_date], [approved_by], [rejected_date], [rejected_by], [rejected_reason], [pre_name], [first_name], [last_name], [address_build_name], [address_room_no], [address_floor_no], [address_village_name], [address_no], [address_moo_no], [address_soi], [address_street_name], [address_tambon], [address_amphur], [address_province], [address_postal_code], [account_no], [active], [remark]) VALUES (N'Update', N'1234567890123', CAST(N'2023-05-25T13:46:21.173' AS DateTime), N'admin', N'W', NULL, NULL, NULL, NULL, NULL, N'นาง', N'ผู้ใช้งาน123', N'user 04', N'1', N'1', N'1', N'1', N'25', N'1', N'1', N'1', N'1', N'1', N'1', N'10100', N'123123', 1, N'postcode')
 GO
-INSERT [dbo].[NETS_Payments] ([ref_year], [ref_no], [transaction_no], [national_id], [account_no], [group_id], [amount], [withholding_tax], [amount_net], [payment_status], [batch_run_date], [batch_paid_date], [created_date], [updated_date], [description], [adjusted_by], [adjusted_date]) VALUES (2023, N'00003', 1, N'123456789', N'123123', N'IT', CAST(50.00 AS Decimal(17, 2)), CAST(0.00 AS Decimal(17, 2)), CAST(0.00 AS Decimal(17, 2)), N'P', CAST(N'2023-05-17' AS Date), CAST(N'2023-05-17' AS Date), CAST(N'2023-05-17T10:43:24.223' AS DateTime), CAST(N'2023-05-17T10:43:24.223' AS DateTime), NULL, NULL, NULL)
+INSERT [dbo].[NETS_Payees_Change] ([action], [national_id], [changed_date], [changed_by], [status], [approved_date], [approved_by], [rejected_date], [rejected_by], [rejected_reason], [pre_name], [first_name], [last_name], [address_build_name], [address_room_no], [address_floor_no], [address_village_name], [address_no], [address_moo_no], [address_soi], [address_street_name], [address_tambon], [address_amphur], [address_province], [address_postal_code], [account_no], [active], [remark]) VALUES (N'New', N'1234567845454', CAST(N'2023-05-25T14:01:35.387' AS DateTime), N'admin', N'W', NULL, NULL, NULL, NULL, NULL, N'นางสาว', N'123', N'123', N'123', N'123', N'123', N'132', N'123', N'123', N'23132', N'1', N'31', N'321', N'321', N'321', N'1231231232', 1, N'-')
 GO
-INSERT [dbo].[NETS_Payments] ([ref_year], [ref_no], [transaction_no], [national_id], [account_no], [group_id], [amount], [withholding_tax], [amount_net], [payment_status], [batch_run_date], [batch_paid_date], [created_date], [updated_date], [description], [adjusted_by], [adjusted_date]) VALUES (2023, N'00004', 1, N'123456789', N'123123', N'IT', CAST(120.00 AS Decimal(17, 2)), CAST(0.00 AS Decimal(17, 2)), CAST(0.00 AS Decimal(17, 2)), N'P', CAST(N'2023-05-12' AS Date), CAST(N'2023-05-12' AS Date), CAST(N'2023-05-17T10:43:53.273' AS DateTime), CAST(N'2023-05-17T10:43:53.273' AS DateTime), NULL, NULL, NULL)
+INSERT [dbo].[NETS_Payees_Change] ([action], [national_id], [changed_date], [changed_by], [status], [approved_date], [approved_by], [rejected_date], [rejected_by], [rejected_reason], [pre_name], [first_name], [last_name], [address_build_name], [address_room_no], [address_floor_no], [address_village_name], [address_no], [address_moo_no], [address_soi], [address_street_name], [address_tambon], [address_amphur], [address_province], [address_postal_code], [account_no], [active], [remark]) VALUES (N'Update', N'1234567890123', CAST(N'2023-05-25T08:46:41.103' AS DateTime), N'admin', N'R', NULL, NULL, CAST(N'2023-05-25T08:48:50.970' AS DateTime), N'admin', N'', N'นาง', N'ผู้ใช้งาน123', N'user 04', N'1', N'1', N'1', N'1', N'25', N'1', N'1', N'1', N'1', N'1', N'1', N'10200', N'123123', 1, N'test')
 GO
-INSERT [dbo].[NETS_Payments] ([ref_year], [ref_no], [transaction_no], [national_id], [account_no], [group_id], [amount], [withholding_tax], [amount_net], [payment_status], [batch_run_date], [batch_paid_date], [created_date], [updated_date], [description], [adjusted_by], [adjusted_date]) VALUES (2023, N'00005', 1, N'1234567890', N'123', N'IT', CAST(3.00 AS Decimal(17, 2)), CAST(0.00 AS Decimal(17, 2)), CAST(0.00 AS Decimal(17, 2)), N'P', CAST(N'2023-05-12' AS Date), CAST(N'2023-05-12' AS Date), CAST(N'2023-05-17T10:43:59.667' AS DateTime), CAST(N'2023-05-17T10:43:59.667' AS DateTime), NULL, NULL, NULL)
+INSERT [dbo].[NETS_Payees_Logs] ([national_id], [pre_name], [first_name], [last_name], [address_build_name], [address_room_no], [address_floor_no], [address_village_name], [address_no], [address_moo_no], [address_soi], [address_street_name], [address_tambon], [address_amphur], [address_province], [address_postal_code], [account_no], [active], [created_date], [created_by], [updated_date], [updated_by]) VALUES (N'1234567890134', N'นาง', N'cat', N'dog', N'1', N'1', N'1', N'1', N'25', N'1', N'1', N'1', N'1', N'1', N'1', N'1000', N'123', 1, CAST(N'2023-03-30T08:47:36.000' AS DateTime), N'admin', CAST(N'2023-12-12T00:00:00.000' AS DateTime), N'admin')
 GO
-INSERT [dbo].[NETS_Payments] ([ref_year], [ref_no], [transaction_no], [national_id], [account_no], [group_id], [amount], [withholding_tax], [amount_net], [payment_status], [batch_run_date], [batch_paid_date], [created_date], [updated_date], [description], [adjusted_by], [adjusted_date]) VALUES (2023, N'00006', 1, N'1234567890', N'123', N'IT', CAST(999.00 AS Decimal(17, 2)), CAST(0.00 AS Decimal(17, 2)), CAST(0.00 AS Decimal(17, 2)), N'P', CAST(N'2023-05-12' AS Date), CAST(N'2023-05-12' AS Date), CAST(N'2023-05-17T10:44:06.777' AS DateTime), CAST(N'2023-05-17T10:44:06.777' AS DateTime), NULL, NULL, NULL)
+INSERT [dbo].[NETS_Payees_Logs] ([national_id], [pre_name], [first_name], [last_name], [address_build_name], [address_room_no], [address_floor_no], [address_village_name], [address_no], [address_moo_no], [address_soi], [address_street_name], [address_tambon], [address_amphur], [address_province], [address_postal_code], [account_no], [active], [created_date], [created_by], [updated_date], [updated_by]) VALUES (N'1234567890134', N'นาง', N'cat', N'dog', N'1', N'1', N'1', N'1', N'25', N'1', N'1', N'1', N'1', N'1', N'1', N'1000', N'123', 1, CAST(N'2023-03-30T08:47:36.000' AS DateTime), N'admin', CAST(N'2023-12-12T00:00:00.000' AS DateTime), N'admin')
+GO
+INSERT [dbo].[NETS_Payees_Logs] ([national_id], [pre_name], [first_name], [last_name], [address_build_name], [address_room_no], [address_floor_no], [address_village_name], [address_no], [address_moo_no], [address_soi], [address_street_name], [address_tambon], [address_amphur], [address_province], [address_postal_code], [account_no], [active], [created_date], [created_by], [updated_date], [updated_by]) VALUES (N'1234567890123', N'นาง', N'ผู้ใช้งาน123', N'user 04', N'1', N'1', N'1', N'1', N'25', N'1', N'1', N'1', N'1', N'1', N'1', N'10400', N'123123', 1, CAST(N'2023-03-30T13:50:54.000' AS DateTime), N'admin', CAST(N'2023-12-12T00:00:00.000' AS DateTime), N'admin')
+GO
+INSERT [dbo].[NETS_Payments] ([ref_year], [ref_no], [transaction_no], [national_id], [account_no], [group_id], [amount], [withholding_tax], [amount_net], [payment_status], [batch_run_date], [batch_paid_date], [created_date], [updated_date], [description], [adjusted_by], [adjusted_date]) VALUES (2023, N'00001', 1, N'1234567890134', N'123', N'IT', CAST(25.00 AS Decimal(17, 2)), CAST(0.00 AS Decimal(17, 2)), CAST(0.00 AS Decimal(17, 2)), N'P', CAST(N'2023-05-17' AS Date), CAST(N'2023-05-17' AS Date), CAST(N'2023-05-17T10:43:06.503' AS DateTime), CAST(N'2023-05-17T10:43:06.503' AS DateTime), NULL, NULL, NULL)
+GO
+INSERT [dbo].[NETS_Payments] ([ref_year], [ref_no], [transaction_no], [national_id], [account_no], [group_id], [amount], [withholding_tax], [amount_net], [payment_status], [batch_run_date], [batch_paid_date], [created_date], [updated_date], [description], [adjusted_by], [adjusted_date]) VALUES (2023, N'00002', 1, N'1234567890134', N'123', N'IT', CAST(0.00 AS Decimal(17, 2)), CAST(0.00 AS Decimal(17, 2)), CAST(0.00 AS Decimal(17, 2)), N'P', CAST(N'2023-05-17' AS Date), CAST(N'2023-05-17' AS Date), CAST(N'2023-05-17T10:43:14.057' AS DateTime), CAST(N'2023-05-17T10:43:14.057' AS DateTime), NULL, NULL, NULL)
+GO
+INSERT [dbo].[NETS_Payments] ([ref_year], [ref_no], [transaction_no], [national_id], [account_no], [group_id], [amount], [withholding_tax], [amount_net], [payment_status], [batch_run_date], [batch_paid_date], [created_date], [updated_date], [description], [adjusted_by], [adjusted_date]) VALUES (2023, N'00003', 1, N'1234567890123', N'123123', N'IT', CAST(50.00 AS Decimal(17, 2)), CAST(0.00 AS Decimal(17, 2)), CAST(0.00 AS Decimal(17, 2)), N'P', CAST(N'2023-05-17' AS Date), CAST(N'2023-05-17' AS Date), CAST(N'2023-05-17T10:43:24.223' AS DateTime), CAST(N'2023-05-17T10:43:24.223' AS DateTime), NULL, NULL, NULL)
+GO
+INSERT [dbo].[NETS_Payments] ([ref_year], [ref_no], [transaction_no], [national_id], [account_no], [group_id], [amount], [withholding_tax], [amount_net], [payment_status], [batch_run_date], [batch_paid_date], [created_date], [updated_date], [description], [adjusted_by], [adjusted_date]) VALUES (2023, N'00004', 1, N'1234567890123', N'123123', N'IT', CAST(120.00 AS Decimal(17, 2)), CAST(0.00 AS Decimal(17, 2)), CAST(0.00 AS Decimal(17, 2)), N'P', CAST(N'2023-05-12' AS Date), CAST(N'2023-05-12' AS Date), CAST(N'2023-05-17T10:43:53.273' AS DateTime), CAST(N'2023-05-17T10:43:53.273' AS DateTime), NULL, NULL, NULL)
+GO
+INSERT [dbo].[NETS_Payments] ([ref_year], [ref_no], [transaction_no], [national_id], [account_no], [group_id], [amount], [withholding_tax], [amount_net], [payment_status], [batch_run_date], [batch_paid_date], [created_date], [updated_date], [description], [adjusted_by], [adjusted_date]) VALUES (2023, N'00005', 1, N'1234567890134', N'123', N'IT', CAST(3.00 AS Decimal(17, 2)), CAST(0.00 AS Decimal(17, 2)), CAST(0.00 AS Decimal(17, 2)), N'P', CAST(N'2023-05-12' AS Date), CAST(N'2023-05-12' AS Date), CAST(N'2023-05-17T10:43:59.667' AS DateTime), CAST(N'2023-05-17T10:43:59.667' AS DateTime), NULL, NULL, NULL)
+GO
+INSERT [dbo].[NETS_Payments] ([ref_year], [ref_no], [transaction_no], [national_id], [account_no], [group_id], [amount], [withholding_tax], [amount_net], [payment_status], [batch_run_date], [batch_paid_date], [created_date], [updated_date], [description], [adjusted_by], [adjusted_date]) VALUES (2023, N'00006', 1, N'1234567890134', N'123', N'IT', CAST(999.00 AS Decimal(17, 2)), CAST(0.00 AS Decimal(17, 2)), CAST(0.00 AS Decimal(17, 2)), N'P', CAST(N'2023-05-12' AS Date), CAST(N'2023-05-12' AS Date), CAST(N'2023-05-17T10:44:06.777' AS DateTime), CAST(N'2023-05-17T10:44:06.777' AS DateTime), NULL, NULL, NULL)
 GO
 INSERT [dbo].[NETS_Roles] ([role_id], [role_title], [role_level], [active], [menu_manual_entry], [menu_inquiry], [menu_setup], [menu_admin], [menu_report], [menu_tax], [menu_it], [func_approve], [func_upload], [func_payee], [created_date], [created_by], [updated_date], [updated_by], [menu_01], [menu_02], [menu_03], [menu_04], [menu_05], [menu_06], [menu_07], [menu_08], [menu_09], [menu_10], [func_01], [func_02], [func_03], [func_04], [func_05], [func_06], [func_07], [func_08], [func_09], [func_10]) VALUES (N'AppAdmin', N'App - Admin', 50, 1, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, CAST(N'2023-05-12T10:38:41.043' AS DateTime), N'admin', CAST(N'2023-05-12T10:38:41.043' AS DateTime), N'admin', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL)
 GO
@@ -898,7 +960,7 @@ ALTER TABLE [dbo].[NETS_User_Profiles] ADD  CONSTRAINT [DF_UserProfiles_created_
 GO
 ALTER TABLE [dbo].[NETS_User_Profiles] ADD  CONSTRAINT [DF_UserProfiles_updated_date]  DEFAULT (getdate()) FOR [updated_date]
 GO
-/****** Object:  StoredProcedure [dbo].[checkManualIncomeUpload]    Script Date: 5/23/2023 4:40:51 PM ******/
+/****** Object:  StoredProcedure [dbo].[checkManualIncomeUpload]    Script Date: 5/25/2023 4:50:12 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1045,7 +1107,43 @@ BEGIN
 END
 
 GO
-/****** Object:  StoredProcedure [dbo].[deleteTaxTerm]    Script Date: 5/23/2023 4:40:51 PM ******/
+/****** Object:  StoredProcedure [dbo].[deletePayeeChange]    Script Date: 5/25/2023 4:50:12 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[deletePayeeChange]
+@national_id varchar(13) 
+,@DeleteBy varchar(50)
+
+AS
+BEGIN
+
+BEGIN TRANSACTION
+BEGIN TRY
+
+	DELETE FROM dbo.NETS_Payees_Change
+	WHERE national_id = @national_id
+	AND changed_by = @DeleteBy
+	AND status = 'W';
+
+	COMMIT;
+
+	SELECT (-1) Result;
+
+END TRY
+BEGIN CATCH
+	
+	SELECT ISNULL(ERROR_NUMBER(), 0) Result;
+
+	IF @@TRANCOUNT > 0
+		ROLLBACK;
+
+END CATCH
+
+END
+GO
+/****** Object:  StoredProcedure [dbo].[deleteTaxTerm]    Script Date: 5/25/2023 4:50:12 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1077,7 +1175,7 @@ END CATCH
 END
 
 GO
-/****** Object:  StoredProcedure [dbo].[FindUser]    Script Date: 5/23/2023 4:40:51 PM ******/
+/****** Object:  StoredProcedure [dbo].[FindUser]    Script Date: 5/25/2023 4:50:12 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1113,7 +1211,7 @@ FROM dbo.NETS_User_Profiles u1
 END
 
 GO
-/****** Object:  StoredProcedure [dbo].[getAllDataGroups]    Script Date: 5/23/2023 4:40:51 PM ******/
+/****** Object:  StoredProcedure [dbo].[getAllDataGroups]    Script Date: 5/25/2023 4:50:12 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1129,7 +1227,7 @@ BEGIN
 END
 
 GO
-/****** Object:  StoredProcedure [dbo].[getAllIncome]    Script Date: 5/23/2023 4:40:51 PM ******/
+/****** Object:  StoredProcedure [dbo].[getAllIncome]    Script Date: 5/25/2023 4:50:12 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1145,7 +1243,7 @@ BEGIN
 END
 
 GO
-/****** Object:  StoredProcedure [dbo].[getAllListOfValues]    Script Date: 5/23/2023 4:40:51 PM ******/
+/****** Object:  StoredProcedure [dbo].[getAllListOfValues]    Script Date: 5/25/2023 4:50:12 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1161,7 +1259,7 @@ BEGIN
 END
 
 GO
-/****** Object:  StoredProcedure [dbo].[getAllPayees]    Script Date: 5/23/2023 4:40:51 PM ******/
+/****** Object:  StoredProcedure [dbo].[getAllPayees]    Script Date: 5/25/2023 4:50:12 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1177,7 +1275,7 @@ BEGIN
 END
 
 GO
-/****** Object:  StoredProcedure [dbo].[getAllRoles]    Script Date: 5/23/2023 4:40:51 PM ******/
+/****** Object:  StoredProcedure [dbo].[getAllRoles]    Script Date: 5/25/2023 4:50:12 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1198,7 +1296,7 @@ END
 SET ANSI_NULLS ON
 
 GO
-/****** Object:  StoredProcedure [dbo].[getAllUser]    Script Date: 5/23/2023 4:40:51 PM ******/
+/****** Object:  StoredProcedure [dbo].[getAllUser]    Script Date: 5/25/2023 4:50:12 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1230,7 +1328,7 @@ JOIN dbo.NETS_List_of_Values l2 ON l2.lov_field = 'Team' AND l2.lov_code = u1.te
 END
 
 GO
-/****** Object:  StoredProcedure [dbo].[getApproveIncomeSearch]    Script Date: 5/23/2023 4:40:51 PM ******/
+/****** Object:  StoredProcedure [dbo].[getApproveIncomeSearch]    Script Date: 5/25/2023 4:50:12 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1298,7 +1396,7 @@ BEGIN
 END
 
 GO
-/****** Object:  StoredProcedure [dbo].[getBatchCalendarByYear]    Script Date: 5/23/2023 4:40:51 PM ******/
+/****** Object:  StoredProcedure [dbo].[getBatchCalendarByYear]    Script Date: 5/25/2023 4:50:12 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1325,7 +1423,7 @@ ORDER BY 1 ASC;
 END
 
 GO
-/****** Object:  StoredProcedure [dbo].[getBatchCalendarByYearAndMonth]    Script Date: 5/23/2023 4:40:51 PM ******/
+/****** Object:  StoredProcedure [dbo].[getBatchCalendarByYearAndMonth]    Script Date: 5/25/2023 4:50:12 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1350,7 +1448,7 @@ AND c.calendar_month = @month;
 END
 
 GO
-/****** Object:  StoredProcedure [dbo].[getBatchRunDate]    Script Date: 5/23/2023 4:40:51 PM ******/
+/****** Object:  StoredProcedure [dbo].[getBatchRunDate]    Script Date: 5/25/2023 4:50:12 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1371,7 +1469,7 @@ WHERE c.batch_run_flag = 0
 END
 
 GO
-/****** Object:  StoredProcedure [dbo].[getCalendarYear]    Script Date: 5/23/2023 4:40:51 PM ******/
+/****** Object:  StoredProcedure [dbo].[getCalendarYear]    Script Date: 5/25/2023 4:50:12 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1386,7 +1484,7 @@ ORDER BY 1 ASC;
 END
 
 GO
-/****** Object:  StoredProcedure [dbo].[getDataGroups]    Script Date: 5/23/2023 4:40:51 PM ******/
+/****** Object:  StoredProcedure [dbo].[getDataGroups]    Script Date: 5/25/2023 4:50:12 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1403,7 +1501,7 @@ BEGIN
 END
 
 GO
-/****** Object:  StoredProcedure [dbo].[GetEffective]    Script Date: 5/23/2023 4:40:51 PM ******/
+/****** Object:  StoredProcedure [dbo].[GetEffective]    Script Date: 5/25/2023 4:50:12 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1421,7 +1519,7 @@ JOIN (SELECT MAX(t.effective_date) effective_date
 END
 
 GO
-/****** Object:  StoredProcedure [dbo].[getIncome]    Script Date: 5/23/2023 4:40:51 PM ******/
+/****** Object:  StoredProcedure [dbo].[getIncome]    Script Date: 5/25/2023 4:50:12 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1442,7 +1540,7 @@ BEGIN
 END
 
 GO
-/****** Object:  StoredProcedure [dbo].[getInquiry]    Script Date: 5/23/2023 4:40:51 PM ******/
+/****** Object:  StoredProcedure [dbo].[getInquiry]    Script Date: 5/25/2023 4:50:12 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1473,6 +1571,16 @@ SELECT @role_level = r.role_level
 	FROM dbo.NETS_Roles r
 	JOIN dbo.NETS_User_Profiles u ON u.oa_user = @username
 									AND u.role_id = r.role_id;
+DECLARE @type TABLE(
+id char(1)
+,title varchar(250)
+,order_by int);
+
+INSERT INTO @type VALUES('A', 'รายการที่เข้าบัญชีทั้งหมด', 1);
+INSERT INTO @type VALUES('C', 'รายการที่รอเข้าบัญชี', 2);
+INSERT INTO @type VALUES('P', 'รายการที่เข้าบัญชีสำเร็จ', 3);
+INSERT INTO @type VALUES('U', 'รายการที่เข้าบัญชีไม่สำเร็จ', 4);
+INSERT INTO @type VALUES('I', 'รายการที่ยังไม่อนุมัติ', 5);
 
 
 IF @role_level >= 50
@@ -1545,6 +1653,18 @@ BEGIN
             ,ROW_NUMBER() OVER(ORDER BY l.lov_description) order_by
         FROM dbo.NETS_List_of_Values l
         WHERE l.lov_field = 'Source'
+    END
+
+    BEGIN
+        -- source dropdown
+SELECT 
+     'PaymentSource' field,
+	id
+	,title
+	,order_by
+FROM @type
+ORDER BY order_by ASC;
+
     END
 
     IF @field IS NULL OR @field = 'TransferDate'
@@ -1655,9 +1775,8 @@ END
 END
 
 END
-
 GO
-/****** Object:  StoredProcedure [dbo].[getInquiryIncomeSearch]    Script Date: 5/23/2023 4:40:51 PM ******/
+/****** Object:  StoredProcedure [dbo].[getInquiryIncomeSearch]    Script Date: 5/25/2023 4:50:12 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1774,14 +1893,14 @@ BEGIN
 END
 
 GO
-/****** Object:  StoredProcedure [dbo].[getInquiryPaymentsSearch]    Script Date: 5/23/2023 4:40:51 PM ******/
+/****** Object:  StoredProcedure [dbo].[getInquiryPaymentsSearch]    Script Date: 5/25/2023 4:50:12 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE PROCEDURE [dbo].[getInquiryPaymentsSearch]
 @username varchar(50)
-,@team_id varchar(50)
+,@team_id varchar(50) = ''
 ,@product_id varchar(50)
 ,@data_group_id varchar(50)
 ,@payment_status varchar(1)
@@ -1918,9 +2037,8 @@ BEGIN
 	END
 
 END
-
 GO
-/****** Object:  StoredProcedure [dbo].[getInquiryTax]    Script Date: 5/23/2023 4:40:51 PM ******/
+/****** Object:  StoredProcedure [dbo].[getInquiryTax]    Script Date: 5/25/2023 4:50:12 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -2015,7 +2133,7 @@ FROM (SELECT DISTINCT FORMAT(b.batch_run_date, 'yyyy') year
 END
 END
 GO
-/****** Object:  StoredProcedure [dbo].[getInquiryTaxGroup]    Script Date: 5/23/2023 4:40:51 PM ******/
+/****** Object:  StoredProcedure [dbo].[getInquiryTaxGroup]    Script Date: 5/25/2023 4:50:12 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -2097,7 +2215,7 @@ BEGIN
 
 END
 GO
-/****** Object:  StoredProcedure [dbo].[getInquiryTaxPerson]    Script Date: 5/23/2023 4:40:51 PM ******/
+/****** Object:  StoredProcedure [dbo].[getInquiryTaxPerson]    Script Date: 5/25/2023 4:50:12 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -2152,7 +2270,7 @@ BEGIN
 
 END
 GO
-/****** Object:  StoredProcedure [dbo].[getInquiryTaxPersonSearch]    Script Date: 5/23/2023 4:40:51 PM ******/
+/****** Object:  StoredProcedure [dbo].[getInquiryTaxPersonSearch]    Script Date: 5/25/2023 4:50:12 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -2192,7 +2310,7 @@ BEGIN
 
 END
 GO
-/****** Object:  StoredProcedure [dbo].[getListDataGroups]    Script Date: 5/23/2023 4:40:51 PM ******/
+/****** Object:  StoredProcedure [dbo].[getListDataGroups]    Script Date: 5/25/2023 4:50:12 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -2205,7 +2323,7 @@ Begin
 End
 
 GO
-/****** Object:  StoredProcedure [dbo].[getListEffectiveDate]    Script Date: 5/23/2023 4:40:51 PM ******/
+/****** Object:  StoredProcedure [dbo].[getListEffectiveDate]    Script Date: 5/25/2023 4:50:12 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -2221,7 +2339,7 @@ BEGIN
 END
 
 GO
-/****** Object:  StoredProcedure [dbo].[getListOfValues]    Script Date: 5/23/2023 4:40:51 PM ******/
+/****** Object:  StoredProcedure [dbo].[getListOfValues]    Script Date: 5/25/2023 4:50:12 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -2240,7 +2358,7 @@ BEGIN
 END
 
 GO
-/****** Object:  StoredProcedure [dbo].[getListParents]    Script Date: 5/23/2023 4:40:51 PM ******/
+/****** Object:  StoredProcedure [dbo].[getListParents]    Script Date: 5/25/2023 4:50:12 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -2254,7 +2372,7 @@ Begin
 End
 
 GO
-/****** Object:  StoredProcedure [dbo].[getListPreName]    Script Date: 5/23/2023 4:40:51 PM ******/
+/****** Object:  StoredProcedure [dbo].[getListPreName]    Script Date: 5/25/2023 4:50:12 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -2263,8 +2381,8 @@ CREATE PROCEDURE [dbo].[getListPreName]
 
 AS
 BEGIN
-	SELECT l2.lov_code team_id
-	,l2.lov_description team_title
+	SELECT l2.lov_code id
+	,l2.lov_description title
 FROM dbo.NETS_List_of_Values l2
 WHERE l2.lov_field = 'PreName'
 AND l2.lov_active = 1
@@ -2272,7 +2390,7 @@ AND l2.lov_active = 1
 END
 
 GO
-/****** Object:  StoredProcedure [dbo].[getListProducts]    Script Date: 5/23/2023 4:40:51 PM ******/
+/****** Object:  StoredProcedure [dbo].[getListProducts]    Script Date: 5/25/2023 4:50:12 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -2280,8 +2398,8 @@ GO
 CREATE PROCEDURE [dbo].[getListProducts]
 AS
 Begin
-   SELECT l1.lov_code product_id
-	   ,l1.lov_description product_title
+   SELECT l1.lov_code id
+	   ,l1.lov_description title
    FROM dbo.NETS_List_of_Values l1 
    WHERE l1.lov_field = 'Product'
    AND l1.lov_active = 1
@@ -2289,7 +2407,7 @@ Begin
 End
 
 GO
-/****** Object:  StoredProcedure [dbo].[getListRole]    Script Date: 5/23/2023 4:40:51 PM ******/
+/****** Object:  StoredProcedure [dbo].[getListRole]    Script Date: 5/25/2023 4:50:12 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -2297,12 +2415,13 @@ GO
 CREATE PROCEDURE [dbo].[getListRole]
 AS
 Begin
-	SELECT role_id,role_title
+	SELECT role_id id
+	,role_title title
 	From NETS_Roles
 End
 
 GO
-/****** Object:  StoredProcedure [dbo].[getListTaxRate]    Script Date: 5/23/2023 4:40:51 PM ******/
+/****** Object:  StoredProcedure [dbo].[getListTaxRate]    Script Date: 5/25/2023 4:50:12 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -2324,7 +2443,7 @@ ORDER BY t.tax_range_begin ASC;
 END
 
 GO
-/****** Object:  StoredProcedure [dbo].[getListTeams]    Script Date: 5/23/2023 4:40:51 PM ******/
+/****** Object:  StoredProcedure [dbo].[getListTeams]    Script Date: 5/25/2023 4:50:12 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -2332,8 +2451,8 @@ GO
 CREATE PROCEDURE [dbo].[getListTeams]
 AS
 Begin
-   SELECT l2.lov_code team_id
-	   ,l2.lov_description team_title
+   SELECT l2.lov_code id
+	   ,l2.lov_description title
    FROM dbo.NETS_List_of_Values l2
    WHERE l2.lov_field = 'Team'
    AND l2.lov_active = 1
@@ -2341,7 +2460,7 @@ Begin
 End
 
 GO
-/****** Object:  StoredProcedure [dbo].[getManualDropdown]    Script Date: 5/23/2023 4:40:51 PM ******/
+/****** Object:  StoredProcedure [dbo].[getManualDropdown]    Script Date: 5/25/2023 4:50:12 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -2367,7 +2486,7 @@ ORDER BY g1.group_id ASC;
 END
 
 GO
-/****** Object:  StoredProcedure [dbo].[getManualIncome]    Script Date: 5/23/2023 4:40:51 PM ******/
+/****** Object:  StoredProcedure [dbo].[getManualIncome]    Script Date: 5/25/2023 4:50:12 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -2408,7 +2527,7 @@ BEGIN
 END
 
 GO
-/****** Object:  StoredProcedure [dbo].[getManualIncomeAdjustByID]    Script Date: 5/23/2023 4:40:51 PM ******/
+/****** Object:  StoredProcedure [dbo].[getManualIncomeAdjustByID]    Script Date: 5/25/2023 4:50:12 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -2455,7 +2574,7 @@ BEGIN
 
 END
 GO
-/****** Object:  StoredProcedure [dbo].[getManualIncomeAdjustSearch]    Script Date: 5/23/2023 4:40:51 PM ******/
+/****** Object:  StoredProcedure [dbo].[getManualIncomeAdjustSearch]    Script Date: 5/25/2023 4:50:12 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -2521,7 +2640,7 @@ BEGIN
 
 END
 GO
-/****** Object:  StoredProcedure [dbo].[getManualIncomeHistory]    Script Date: 5/23/2023 4:40:51 PM ******/
+/****** Object:  StoredProcedure [dbo].[getManualIncomeHistory]    Script Date: 5/25/2023 4:50:12 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -2562,7 +2681,7 @@ BEGIN
 END
 
 GO
-/****** Object:  StoredProcedure [dbo].[getNextCalendar]    Script Date: 5/23/2023 4:40:51 PM ******/
+/****** Object:  StoredProcedure [dbo].[getNextCalendar]    Script Date: 5/25/2023 4:50:12 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -2582,7 +2701,45 @@ WHERE c.batch_run_date IS NULL
 END
 
 GO
-/****** Object:  StoredProcedure [dbo].[getPayeesById]    Script Date: 5/23/2023 4:40:51 PM ******/
+/****** Object:  StoredProcedure [dbo].[getPayeePending]    Script Date: 5/25/2023 4:50:12 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[getPayeePending]
+	@changed_by varchar(50) = 'user07'
+AS
+Begin
+
+SELECT 
+	p.action
+	,p.national_id
+	,p.pre_name
+	,p.first_name
+	,p.last_name
+	,p.active
+	,p.account_no
+	,CONCAT(p.address_no, ' '
+		,IIF(ISNULL(p.address_moo_no, '') = '', '', 'หมู่ ' + p.address_moo_no + ' ')
+		,IIF(ISNULL(p.address_build_name, '') = '', '', 'อาคาร ' + p.address_build_name + ' ')
+		,IIF(ISNULL(p.address_room_no, '') = '', '', 'ห้อง ' + p.address_room_no + ' ')
+		,IIF(ISNULL(p.address_floor_no, '') = '', '', 'ชั้น ' + p.address_floor_no + ' ')
+		,IIF(ISNULL(p.address_village_name, '') = '', '', 'หมู่บ้าน ' + p.address_village_name + ' ')
+		,IIF(ISNULL(p.address_soi, '') = '', '', 'ซอย ' + p.address_soi + ' ')
+		,IIF(ISNULL(p.address_street_name, '') = '', '', 'ถนน ' + p.address_street_name + ' ')
+		,p.address_tambon, ' '
+		,p.address_amphur, ' '
+		,p.address_province, ' '
+		,p.address_postal_code) address
+
+FROM dbo.NETS_Payees_Change p
+WHERE p.status = 'W'
+AND p.changed_by = @changed_by
+ORDER BY p.changed_date DESC
+
+End
+GO
+/****** Object:  StoredProcedure [dbo].[getPayeesById]    Script Date: 5/25/2023 4:50:12 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -2616,7 +2773,7 @@ WHERE national_id = @national_id
 END
 
 GO
-/****** Object:  StoredProcedure [dbo].[getPayeesChange]    Script Date: 5/23/2023 4:40:51 PM ******/
+/****** Object:  StoredProcedure [dbo].[getPayeesChange]    Script Date: 5/25/2023 4:50:12 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -2731,7 +2888,7 @@ ORDER BY changed_date DESC
 
 END
 GO
-/****** Object:  StoredProcedure [dbo].[getRole]    Script Date: 5/23/2023 4:40:51 PM ******/
+/****** Object:  StoredProcedure [dbo].[getRole]    Script Date: 5/25/2023 4:50:12 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -2751,7 +2908,7 @@ BEGIN
 END
 
 GO
-/****** Object:  StoredProcedure [dbo].[getSource]    Script Date: 5/23/2023 4:40:51 PM ******/
+/****** Object:  StoredProcedure [dbo].[getSource]    Script Date: 5/25/2023 4:50:12 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -2769,7 +2926,7 @@ ORDER BY IIF(l.lov_code = 'M', 1, IIF(l.lov_code = 'U', 2, 3)) ASC
 END
 
 GO
-/****** Object:  StoredProcedure [dbo].[getSubmittedy]    Script Date: 5/23/2023 4:40:51 PM ******/
+/****** Object:  StoredProcedure [dbo].[getSubmittedy]    Script Date: 5/25/2023 4:50:12 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -2797,7 +2954,7 @@ ORDER BY 1 ASC
 END
 
 GO
-/****** Object:  StoredProcedure [dbo].[getTaxByDate]    Script Date: 5/23/2023 4:40:51 PM ******/
+/****** Object:  StoredProcedure [dbo].[getTaxByDate]    Script Date: 5/25/2023 4:50:12 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -2818,7 +2975,7 @@ WHERE d.effective_date = @eff_date;
 END
 
 GO
-/****** Object:  StoredProcedure [dbo].[getTaxByEffDate]    Script Date: 5/23/2023 4:40:51 PM ******/
+/****** Object:  StoredProcedure [dbo].[getTaxByEffDate]    Script Date: 5/25/2023 4:50:12 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -2840,7 +2997,7 @@ ORDER BY t.tax_range_begin ASC;
 END
 
 GO
-/****** Object:  StoredProcedure [dbo].[getTaxById]    Script Date: 5/23/2023 4:40:51 PM ******/
+/****** Object:  StoredProcedure [dbo].[getTaxById]    Script Date: 5/25/2023 4:50:12 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -2857,7 +3014,7 @@ BEGIN
 END
 
 GO
-/****** Object:  StoredProcedure [dbo].[GetUploadTemplate]    Script Date: 5/23/2023 4:40:51 PM ******/
+/****** Object:  StoredProcedure [dbo].[GetUploadTemplate]    Script Date: 5/25/2023 4:50:12 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -2876,7 +3033,7 @@ AS
 END
 
 GO
-/****** Object:  StoredProcedure [dbo].[getUserName]    Script Date: 5/23/2023 4:40:51 PM ******/
+/****** Object:  StoredProcedure [dbo].[getUserName]    Script Date: 5/25/2023 4:50:12 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -2909,7 +3066,7 @@ WHERE u1.oa_user = @oa_user
 END
 
 GO
-/****** Object:  StoredProcedure [dbo].[Login]    Script Date: 5/23/2023 4:40:51 PM ******/
+/****** Object:  StoredProcedure [dbo].[Login]    Script Date: 5/25/2023 4:50:12 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -2935,7 +3092,7 @@ SET ANSI_NULLS ON
 SET ANSI_NULLS ON
 
 GO
-/****** Object:  StoredProcedure [dbo].[postBatchCalendar]    Script Date: 5/23/2023 4:40:51 PM ******/
+/****** Object:  StoredProcedure [dbo].[postBatchCalendar]    Script Date: 5/25/2023 4:50:12 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -2975,7 +3132,7 @@ END CATCH
 END
 
 GO
-/****** Object:  StoredProcedure [dbo].[postDataGroups]    Script Date: 5/23/2023 4:40:51 PM ******/
+/****** Object:  StoredProcedure [dbo].[postDataGroups]    Script Date: 5/25/2023 4:50:12 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -3026,7 +3183,7 @@ END CATCH
 END
 
 GO
-/****** Object:  StoredProcedure [dbo].[postListOfValues]    Script Date: 5/23/2023 4:40:51 PM ******/
+/****** Object:  StoredProcedure [dbo].[postListOfValues]    Script Date: 5/25/2023 4:50:12 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -3075,7 +3232,7 @@ END CATCH
 END
 
 GO
-/****** Object:  StoredProcedure [dbo].[postManualIncomeAdjust]    Script Date: 5/23/2023 4:40:51 PM ******/
+/****** Object:  StoredProcedure [dbo].[postManualIncomeAdjust]    Script Date: 5/25/2023 4:50:12 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -3150,7 +3307,7 @@ END CATCH
 
 END
 GO
-/****** Object:  StoredProcedure [dbo].[postManualIncomeApprove]    Script Date: 5/23/2023 4:40:51 PM ******/
+/****** Object:  StoredProcedure [dbo].[postManualIncomeApprove]    Script Date: 5/25/2023 4:50:12 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -3260,7 +3417,7 @@ END CATCH
 END
 
 GO
-/****** Object:  StoredProcedure [dbo].[postManualIncomeCancel]    Script Date: 5/23/2023 4:40:51 PM ******/
+/****** Object:  StoredProcedure [dbo].[postManualIncomeCancel]    Script Date: 5/25/2023 4:50:12 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -3330,7 +3487,7 @@ END CATCH
 END
 
 GO
-/****** Object:  StoredProcedure [dbo].[postManualIncomeKeyin]    Script Date: 5/23/2023 4:40:51 PM ******/
+/****** Object:  StoredProcedure [dbo].[postManualIncomeKeyin]    Script Date: 5/25/2023 4:50:12 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -3498,7 +3655,7 @@ END CATCH
 END
 
 GO
-/****** Object:  StoredProcedure [dbo].[postManualIncomeReject]    Script Date: 5/23/2023 4:40:51 PM ******/
+/****** Object:  StoredProcedure [dbo].[postManualIncomeReject]    Script Date: 5/25/2023 4:50:12 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -3611,7 +3768,7 @@ END CATCH
 END
 
 GO
-/****** Object:  StoredProcedure [dbo].[postManualIncomeSubmit]    Script Date: 5/23/2023 4:40:51 PM ******/
+/****** Object:  StoredProcedure [dbo].[postManualIncomeSubmit]    Script Date: 5/25/2023 4:50:12 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -3679,7 +3836,7 @@ END CATCH
 END
 
 GO
-/****** Object:  StoredProcedure [dbo].[postManualIncomeUploadSubmit]    Script Date: 5/23/2023 4:40:51 PM ******/
+/****** Object:  StoredProcedure [dbo].[postManualIncomeUploadSubmit]    Script Date: 5/25/2023 4:50:12 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -3835,11 +3992,12 @@ END CATCH
 END
 
 GO
-/****** Object:  StoredProcedure [dbo].[postPayee]    Script Date: 5/23/2023 4:40:51 PM ******/
+/****** Object:  StoredProcedure [dbo].[postPayee]    Script Date: 5/25/2023 4:50:12 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
+
 CREATE PROCEDURE [dbo].[postPayee]
 @national_id varchar(13) 
 ,@pre_name varchar(20) 
@@ -3859,6 +4017,7 @@ CREATE PROCEDURE [dbo].[postPayee]
 ,@address_postal_code varchar(5) 
 ,@account_no varchar(10) 
 ,@active bit 
+,@remark varchar(1000) 
 ,@UpdatedBy varchar(50)
 
 AS
@@ -3867,86 +4026,90 @@ BEGIN
 BEGIN TRANSACTION
 BEGIN TRY
 
-	INSERT INTO dbo.NETS_Payees
-		(national_id
-		,pre_name
-		,first_name
-		,last_name
-		,address_no
-		,address_moo_no
-		,address_build_name
-		,address_room_no
-		,address_floor_no
-		,address_village_name
-		,address_soi
-		,address_street_name
-		,address_tambon
-		,address_amphur
-		,address_province
-		,address_postal_code
-		,account_no
-		,active
-		,created_by
-		,created_date
-		,updated_by
-		,updated_date)
-	VALUES (
-		@national_id
-		,@pre_name
-		,@first_name
-		,@last_name
-		,@address_no
-		,@address_moo_no
-		,@address_build_name
-		,@address_room_no
-		,@address_floor_no
-		,@address_village_name
-		,@address_soi
-		,@address_street_name
-		,@address_tambon
-		,@address_amphur
-		,@address_province
-		,@address_postal_code
-		,@account_no
-		,@active
-		,@UpdatedBy, SYSDATETIME(), @UpdatedBy, SYSDATETIME());
+	IF (SELECT COUNT(*)
+		FROM dbo.NETS_Payees_Change c
+		WHERE c.status = 'W'
+		AND c.national_id = @national_id) >= 1
+	BEGIN
+		ROLLBACK;
 
-	COMMIT;
+	-- payee waiting approve change
+		SELECT (-1) Result;
+
+	END
+	ELSE
+	BEGIN 
+	-- set New or Update
+		DECLARE @action varchar(10);
+		SELECT @action = IIF(COUNT(*) = 0, 'New', 'Update')
+		FROM dbo.NETS_Payees p
+		WHERE p.national_id = @national_id;
+
+		INSERT INTO dbo.NETS_Payees_Change
+			(action
+			,national_id
+			,changed_date
+			,changed_by
+			,status
+			,pre_name
+			,first_name
+			,last_name
+			,address_no
+			,address_moo_no
+			,address_build_name
+			,address_room_no
+			,address_floor_no
+			,address_village_name
+			,address_soi
+			,address_street_name
+			,address_tambon
+			,address_amphur
+			,address_province
+			,address_postal_code
+			,account_no
+			,active
+			,remark)
+		VALUES(
+			@action
+			,@national_id
+			,SYSDATETIME()
+			,@UpdatedBy
+			,'W'
+			,@pre_name
+			,@first_name
+			,@last_name
+			,@address_no
+			,@address_moo_no
+			,@address_build_name
+			,@address_room_no
+			,@address_floor_no
+			,@address_village_name
+			,@address_soi
+			,@address_street_name
+			,@address_tambon
+			,@address_amphur
+			,@address_province
+			,@address_postal_code
+			,@account_no
+			,@active
+			,IIF(@action = 'New', '-', ISNULL(@remark, '-')));
+		COMMIT;
+		SELECT (-2) Result;
+	END
+
 END TRY
 BEGIN CATCH
 	
+	SELECT ISNULL(ERROR_NUMBER(), 0) Result;
+
 	IF @@TRANCOUNT > 0
 		ROLLBACK;
 
-	UPDATE dbo.NETS_Payees
-	SET 
-		pre_name = @pre_name
-		,first_name = @first_name
-		,last_name = @last_name
-		,address_no = @address_no
-		,address_moo_no = @address_moo_no
-		,address_build_name = @address_build_name
-		,address_room_no = @address_room_no
-		,address_floor_no = @address_floor_no
-		,address_village_name = @address_village_name
-		,address_soi = @address_soi
-		,address_street_name = @address_street_name
-		,address_tambon = @address_tambon
-		,address_amphur = @address_amphur
-		,address_province = @address_province
-		,address_postal_code = @address_postal_code
-		,active = @active
-		,updated_by = @UpdatedBy
-		,updated_date = SYSDATETIME()
-	WHERE national_id = @national_id;
-
-	COMMIT;
 END CATCH
 
 END
-
 GO
-/****** Object:  StoredProcedure [dbo].[postPayeeChangeApprove]    Script Date: 5/23/2023 4:40:51 PM ******/
+/****** Object:  StoredProcedure [dbo].[postPayeeChangeApprove]    Script Date: 5/25/2023 4:50:12 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -4032,6 +4195,14 @@ BEGIN TRY
 	WHERE c.status = 'W'
 	AND c.action = 'New';
 	
+
+	-- Add change payee log
+	INSERT INTO dbo.NETS_Payees_Logs
+	SELECT p.*
+	FROM dbo.NETS_Payees p
+	JOIN @list_national_id id ON id.national_id = p.national_id;
+
+	
 	-- Update change
 	UPDATE p
 	SET 
@@ -4087,7 +4258,7 @@ END CATCH
 
 END
 GO
-/****** Object:  StoredProcedure [dbo].[postPayeeChangeReject]    Script Date: 5/23/2023 4:40:51 PM ******/
+/****** Object:  StoredProcedure [dbo].[postPayeeChangeReject]    Script Date: 5/25/2023 4:50:12 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -4148,7 +4319,7 @@ END CATCH
 
 END
 GO
-/****** Object:  StoredProcedure [dbo].[postRole]    Script Date: 5/23/2023 4:40:51 PM ******/
+/****** Object:  StoredProcedure [dbo].[postRole]    Script Date: 5/25/2023 4:50:12 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -4285,7 +4456,7 @@ END CATCH
 END
 
 GO
-/****** Object:  StoredProcedure [dbo].[postTaxDeduction]    Script Date: 5/23/2023 4:40:51 PM ******/
+/****** Object:  StoredProcedure [dbo].[postTaxDeduction]    Script Date: 5/25/2023 4:50:12 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -4340,7 +4511,7 @@ END CATCH
 END
 
 GO
-/****** Object:  StoredProcedure [dbo].[postTaxTerm]    Script Date: 5/23/2023 4:40:51 PM ******/
+/****** Object:  StoredProcedure [dbo].[postTaxTerm]    Script Date: 5/25/2023 4:50:12 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -4402,7 +4573,7 @@ END CATCH
 END
 
 GO
-/****** Object:  StoredProcedure [dbo].[postUsername]    Script Date: 5/23/2023 4:40:51 PM ******/
+/****** Object:  StoredProcedure [dbo].[postUsername]    Script Date: 5/25/2023 4:50:12 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -4464,7 +4635,7 @@ END CATCH
 END
 
 GO
-/****** Object:  StoredProcedure [dbo].[RolePermission]    Script Date: 5/23/2023 4:40:51 PM ******/
+/****** Object:  StoredProcedure [dbo].[RolePermission]    Script Date: 5/25/2023 4:50:12 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -4483,7 +4654,7 @@ AND users.active = 1 ;
 END
 
 GO
-/****** Object:  StoredProcedure [dbo].[searchPayees]    Script Date: 5/23/2023 4:40:51 PM ******/
+/****** Object:  StoredProcedure [dbo].[searchPayees]    Script Date: 5/25/2023 4:50:12 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
